@@ -1,7 +1,7 @@
 <head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script language="javascript" type="text/javascript" src="javaScript/main.js"></script>
+    <script language="javascript" type="text/javascript" src="js/app.js"></script>
 </head>
 <html>
 <body>
@@ -11,13 +11,32 @@
 
 <div id="body">
 
-    <div id="history" class="chat form">
-
-        <button onclick="sayHello()">будет сообщение на алертике</button>
-
+    <div id="game-over-overlay">
     </div>
 
+    <div id="game-over">
+        <h1>GAME OVER</h1>
+        <button id="play-again">Play Again</button>
+    </div>
 
+    <div class="wrapper">
+        <div id="instructions">
+            <div>
+                move with <span class="key">arrows</span> or <span class="key">wasd</span>
+            </div>
+            <div>
+                shoot with <span class="key">space</span>
+            </div>
+        </div>
+
+        <div id="score"></div>
+        <div id="fps"></div>
+    </div>
+
+    <script type="text/javascript" src="js/resources.js"></script>
+    <script type="text/javascript" src="js/input.js"></script>
+    <script type="text/javascript" src="js/sprite.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 
 
 
