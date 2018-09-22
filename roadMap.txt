@@ -57,4 +57,9 @@
 [?] как запустить nodeJS сервер для фронта
   - запустить сервер [ node debugStaticServer.js ]
 
-
+[?] как создать свой таск в 'gradle'
+  - // создали такс, который можем запустить [ gradle hello ]
+    task hello {
+            println  "hello world!"
+            println  helloString  // вытаскиваем строчку из 'gradle.properties'
+    }

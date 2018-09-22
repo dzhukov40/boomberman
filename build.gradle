@@ -29,3 +29,9 @@ dependencies {
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.0.0.RELEASE'
 }
 
+
+// создали такс, который можем запустить [ gradle hello ]
+task hello {
+        println  "hello world!"
+        println  helloString  // вытаскиваем строчку из 'gradle.properties'
+}
