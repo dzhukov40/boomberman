@@ -13,6 +13,6 @@ public class EchoController {
     public @ResponseBody String getPipe() {
         log.info("был запросик");
 
-        return "приветики";
+        return "Hello world!";
     }
 }
