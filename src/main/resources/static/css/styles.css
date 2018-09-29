@@ -4,74 +4,27 @@ html, body {
     background-color: #151515;
 }
 
-canvas {
-    display: block;
-    margin: auto;
-
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
-.wrapper {
-    width: 512px;
-    margin: 0 auto;
-    margin-top: 2em;
-}
-
-#instructions {
-    float: left;
-    font-family: sans-serif;
-    color: #757575;
-}
-
-#score {
-    float: right;
-    color: white;
-    font-size: 2em;
-}
-
-#fps {
-    float: right;
-    color: white;
-    font-size: 2em;
-}
-
-.key {
-    color: #aaffdd;
-}
-
-#game-over, #game-over-overlay {
-    margin: auto;
-    width: 512px;
-    height: 480px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    display: none;
-}
-
-#game-over-overlay {
-    background-color: black;
-    opacity: .5;
-}
-
-#game-over {
-    height: 200px;
+.main_title {
+    color: aqua;
     text-align: center;
-    color: white;
 }
 
-#game-over h1 {
-    font-size: 3em;
-    font-family: sans-serif;
+/*стили для панели логина*/
+.login-panel {
+    width: 160px; background: #ECF5E4; border-right: 1px solid #231F20;
+    top: 82px; /* Расстояние от верхнего края */
+    bottom: 0; /* Расстояние снизу  */
+    height: 100px;
 }
 
-#game-over button {
-    font-size: 1.5em;
+.login-panel-signIn-button {
+    top: 82px; /* Расстояние от верхнего края */
+    left: 170px; /* Расстояние от левого края */
+    bottom: 0; right: 0;
+    height: 30px;
+}
+
+.login-panel-input {
+    width: 80px;
+    height: 30px;
 }
