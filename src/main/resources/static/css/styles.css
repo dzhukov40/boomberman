@@ -17,6 +17,12 @@ html, body {
     height: 100px;
 }
 
+.title-login-panel {
+    text-align: center;
+    font-size: 20px;
+    color: #0c1457;
+}
+
 .login-panel-signIn-button {
     top: 82px; /* Расстояние от верхнего края */
     left: 170px; /* Расстояние от левого края */
@@ -25,6 +31,11 @@ html, body {
 }
 
 .login-panel-input {
+    width: 80px;
+    height: 30px;
+}
+
+.password-panel-input {
     width: 80px;
     height: 30px;
 }

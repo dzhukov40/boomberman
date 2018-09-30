@@ -60,19 +60,49 @@ function addLoginPanel() {
     var loginPanel = document.createElement('div');
     loginPanel.className = "login-panel";
 
-    var logininput =  document.createElement('input');
-    logininput.className = "login-panel-input";
+    var titleLoginPanel = document.createElement('h2');
+    titleLoginPanel.className = "title-login-panel";
+    titleLoginPanel.appendChild(document.createTextNode("Hello man!"));
+
+    var loginInput = document.createElement('input');
+    loginInput.className = "login-panel-input";
+    loginInput.placeholder = "login";
+
+
+    var passwordInput = document.createElement('input');
+    passwordInput.className = "password-panel-input";
+    passwordInput.placeholder = "password";
 
     var signInButton = document.createElement('button');
     signInButton.className = "login-panel-signIn-button";
     signInButton.textContent ="Sign in";
+    // signInButton.addEventListener("click", );
 
-    loginPanel.appendChild(logininput);
+
+
+
+    loginPanel.appendChild(titleLoginPanel);
+    loginPanel.appendChild(loginInput);
+    loginPanel.appendChild(passwordInput);
     loginPanel.appendChild(signInButton);
 
 
     body.appendChild(loginPanel);
 }
+
+function sendLoginPassword(login, password) {
+
+}
+
+
+
+
+
+
+
+
+
+
 
 
 addLoginPanel();
