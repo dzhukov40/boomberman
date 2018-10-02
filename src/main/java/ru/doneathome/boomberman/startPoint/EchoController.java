@@ -5,9 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://127.0.0.1:3000") //TODO: перенести в properties
 @RequestMapping("/echo")
-public class EchoController {
+public class EchoController extends BaseController{
     private static final Logger log = LoggerFactory.getLogger(EchoController.class);
 
     @RequestMapping(method = RequestMethod.GET)

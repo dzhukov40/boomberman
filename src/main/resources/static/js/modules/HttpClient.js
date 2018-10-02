@@ -23,7 +23,6 @@
             xhr.addEventListener("load", function () {
                 console.log(this.responseText);
             });
-            //xhr.setRequestHeader("Access-Control-Allow-Origin","http://127.0.0.1:8070");
             xhr.timeout = 5000;
 
             xhr.send();
