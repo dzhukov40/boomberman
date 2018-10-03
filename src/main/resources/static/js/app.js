@@ -26,7 +26,7 @@
 // import * as sendToServer from './sendToServer';
 
 
-var HttpClient = window.HttpClient;
+var HttpLocal = window.HttpLocal;
 // const httpClient = new HttpClient();
 
 function sayHello(){
@@ -38,10 +38,18 @@ function sayHello(){
 
 
 
+function testGetRequest(){
+    HttpLocal.get('/echo',sendToConsole);
+}
 
-    function testGetRequest(){
-        HttpClient.get('/echo');
-    }
+function testGetRequest(){
+    HttpLocal.get('/echo',sendToConsole);
+}
+
+
+function sendToConsole(msg) {
+    console.log(msg);
+}
 
 
 
