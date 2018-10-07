@@ -1,4 +1,4 @@
-package ru.doneathome.boomberman.startPoint;
+package ru.doneathome.boomberman.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
