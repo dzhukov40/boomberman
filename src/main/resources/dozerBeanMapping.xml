@@ -10,6 +10,7 @@
         <wildcard>true</wildcard>
     </configuration>
 
+
     <mapping>
         <class-a>ru.doneathome.boomberman.DTO.UserDTO</class-a>
         <class-b>ru.doneathome.boomberman.model.User</class-b>
