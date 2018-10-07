@@ -1,5 +1,7 @@
 package ru.doneathome.boomberman.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,22 +9,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import ru.doneathome.boomberman.DTO.UserDTO;
 import ru.doneathome.boomberman.controller.controllerAPI.AutorisationControllerAPI;
+import ru.doneathome.boomberman.mapper.Mapper;
+import ru.doneathome.boomberman.model.User;
 import ru.doneathome.boomberman.service.seviceAPI.AutarisationServiceAPI;
 
 @RestController
 @RequestMapping("/autarisation")
 public class AutorisationController extends BaseController implements AutorisationControllerAPI {
 
+    private static final Logger log = LoggerFactory.getLogger(AutorisationController.class);
+
     @Autowired
     private AutarisationServiceAPI autarisationService;
+    @Autowired
+    private Mapper mapper;
 
 
     @RequestMapping(path = "logIn", method = RequestMethod.POST)
     @Override
     public void logIn(@RequestBody UserDTO userDTO) {
-
-        // мапим дозером dto -> User Entity
-
+        User user = mapper.map(userDTO, User.class);
+        log.info("мапинг прошел: " + user.getLogin() + " " + user.getPassword());
     }
 
     @RequestMapping(path = "logOut", method = RequestMethod.GET)

@@ -69,8 +69,10 @@
     - Mapped "{[/actuator],methods=[GET] ...
 
 
-
-
+5) добавим мапер 'Dozer'
+  - url ' http://dozer.sourceforge.net/documentation/gettingstarted.html '
+  - добавляем файл 'dozerBeanMapping.xml' описывающий мапинг в 'resources'
+  - добавили зависимость в 'build.gradle' строчку 'compile("net.sf.dozer:dozer:${net_sf_dozer_dozer_version}")'
 
 
 

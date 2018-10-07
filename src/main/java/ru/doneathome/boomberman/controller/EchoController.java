@@ -8,6 +8,7 @@ import ru.doneathome.boomberman.controller.controllerAPI.EchoControllerAPI;
 @RestController
 @RequestMapping("/echo")
 public class EchoController extends BaseController implements EchoControllerAPI {
+
     private static final Logger log = LoggerFactory.getLogger(EchoController.class);
 
     @RequestMapping(method = RequestMethod.GET)

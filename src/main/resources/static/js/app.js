@@ -42,8 +42,8 @@ function testGetRequest(){
     HttpLocal.get('/echo',sendToConsole);
 }
 
-function testGetRequest(){
-    HttpLocal.get('/echo',sendToConsole);
+function postUser(){
+    HttpLocal.post('/autarisation/logIn',{login:"den",password:"pass..."},sendToConsole);
 }
 
 

@@ -8,7 +8,7 @@ public class User extends BaseEntity {
     /**
      * мя пользователя
      */
-    private String name;
+    private String login;
     /**
      * пароль пользователя
      */
@@ -23,12 +23,12 @@ public class User extends BaseEntity {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getLogin() {
+        return login;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {
