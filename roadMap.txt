@@ -75,6 +75,14 @@
   - добавили зависимость в 'build.gradle' строчку 'compile("net.sf.dozer:dozer:${net_sf_dozer_dozer_version}")'
 
 
+6) добавляем инмемори базу 'h2'
+  - добавили в 'resources' папочку 'database'
+    - 'shema.sql' создаем таблицы, индексы, вьюхи и так далее
+    - 'data.sql' указываем первоначальное запролнение таблиц при запуске приложения
+  - добавили зависимость compile("com.h2database:h2:${com_h2database_h2_version}")
+  - прописываем настройки 'application.properties'
+    -
+  - теперь можем при запуске сходить в консоль "http://localhost:8070/h2-console"
 
 
 
