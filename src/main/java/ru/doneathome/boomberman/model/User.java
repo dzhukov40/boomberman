@@ -1,10 +1,11 @@
 package ru.doneathome.boomberman.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "user")
 public class User extends BaseEntity {
-    /**
-     * id сущности в базе
-     */
-    private Long id;
     /**
      * мя пользователя
      */
@@ -14,14 +15,6 @@ public class User extends BaseEntity {
      */
     private String password;
 
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getLogin() {
         return login;
