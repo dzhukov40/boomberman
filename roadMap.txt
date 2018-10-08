@@ -85,6 +85,30 @@
   - теперь можем при запуске сходить в консоль "http://localhost:8070/h2-console"
 
 
+7) добавим спринг мониторинг нашего приложения
+  - добавим зависимость:
+    - compile("org.springframework.boot:spring-boot-starter-actuator:${org_springframework_boot_spring_boot_starter_actuator}")
+  - прописываем настройки 'application.properties'
+  - теперь мы можем зайти на:
+    - ' http://localhost:8090/actuator '
+  - (*) много информации для мониторинга + можно создать свой URL и выводить туда статистику
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
