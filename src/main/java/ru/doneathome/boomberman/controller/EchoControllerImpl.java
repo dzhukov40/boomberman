@@ -2,13 +2,18 @@ package ru.doneathome.boomberman.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.doneathome.boomberman.controller.controllerAPI.EchoController;
+import ru.doneathome.boomberman.repository.UserRepository;
 
 @RestController
 @RequestMapping("/echo")
 public class EchoControllerImpl extends BaseControllerImpl implements EchoController {
     private static final Logger log = LoggerFactory.getLogger(EchoControllerImpl.class);
+
+    @Autowired
+    private UserRepository userRepository;
 
     @RequestMapping(method = RequestMethod.GET)
     @Override
