@@ -1,7 +1,8 @@
 
+CREATE SCHEMA boomb;
 
-DROP TABLE IF EXISTS tort;
-CREATE TABLE tort
+DROP TABLE IF EXISTS boomb.user;
+CREATE TABLE boomb.user
 (
   guid varchar(36) NOT NULL,
   last_editing_date  TIMESTAMP NOT NULL,
