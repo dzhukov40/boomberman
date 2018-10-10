@@ -1,6 +1,6 @@
-package ru.doneathome.boomberman.model;
+package ru.doneathome.boomberman.model.baseEntity;
 
-import ru.doneathome.boomberman.DAO.DaoApi.Entity;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,6 +17,7 @@ public abstract class BaseEntity implements Entity {
 
     @Id
     @Column(name = P_GUID, nullable = false)
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     protected String guid;
 
     @Column(name = P_LAST_EDITING_DATE, nullable = false)

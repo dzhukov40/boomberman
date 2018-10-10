@@ -1,4 +1,4 @@
-package ru.doneathome.boomberman.DAO.DaoApi;
+package ru.doneathome.boomberman.model.baseEntity;
 
 import java.io.Serializable;
 

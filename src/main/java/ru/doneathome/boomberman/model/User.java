@@ -1,5 +1,7 @@
 package ru.doneathome.boomberman.model;
 
+import ru.doneathome.boomberman.model.baseEntity.BaseEntity;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 

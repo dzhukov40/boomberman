@@ -97,10 +97,10 @@
 8) добавляем orm 'hibernate'
   - добавим зависимость:
     - compile("org.hibernate:hibernate-core:${org_hibernate_hibernate_core}")
-  - начали проставлять аннотации для сущности 'user'
-  - с базой будем общаться через 'DAO', поэтому у всех моделей будет
-    класс 'модельDao' дуфлизующая 'DAO' интерфейс для этой можели
-
+    - compile("org.springframework.boot:spring-boot-starter-data-jpa:${org_springframework_boot_spring_boot_starter_data_jpa}")
+  - начали проставлять аннотации для сущности 'User'
+  - с базой будем общаться через супер хитрый интерфейс 'JpaRepository'
+  - (+) убрали у интерфейсов 'API' -> добавили реализациям 'Impl'
 
 
 

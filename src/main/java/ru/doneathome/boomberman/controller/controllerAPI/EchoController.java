@@ -3,7 +3,7 @@ package ru.doneathome.boomberman.controller.controllerAPI;
 /**
  * модуль для тестово пинга бека приложения
  */
-public interface EchoControllerAPI {
+public interface EchoController {
 
     /**
      * метод должен вернуть строку 'hello world!'

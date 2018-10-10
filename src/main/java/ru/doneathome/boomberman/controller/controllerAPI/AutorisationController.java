@@ -5,7 +5,7 @@ import ru.doneathome.boomberman.DTO.UserDTO;
 /**
  * авторизация пользователя
  */
-public interface AutorisationControllerAPI {
+public interface AutorisationController {
 
     /**
      * логинемя

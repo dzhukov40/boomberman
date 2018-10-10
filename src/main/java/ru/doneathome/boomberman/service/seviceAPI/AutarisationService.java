@@ -2,7 +2,7 @@ package ru.doneathome.boomberman.service.seviceAPI;
 
 import ru.doneathome.boomberman.model.User;
 
-public interface AutarisationServiceAPI {
+public interface AutarisationService {
 
     /**
      * логинемя
