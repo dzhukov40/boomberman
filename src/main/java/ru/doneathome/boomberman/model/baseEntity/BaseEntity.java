@@ -12,13 +12,13 @@ import java.util.UUID;
 @MappedSuperclass
 public abstract class BaseEntity implements Entity {
 
-    public static final String P_GUID = "guid";
+    public static final String P_ID = "id";
     public static final String P_LAST_EDITING_DATE = "last_editing_date";
 
     @Id
-    @Column(name = P_GUID, nullable = false)
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    protected String guid;
+    @Column(name = P_ID, nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    protected Long id;
 
     @Column(name = P_LAST_EDITING_DATE, nullable = false)
     protected Date lastEditingDate;
@@ -29,15 +29,9 @@ public abstract class BaseEntity implements Entity {
         setLastEditingDate(new Date());
     }
 
-    protected void assignGuidIfEmpty() {
-        if (this.guid == null) {
-            this.guid = UUID.randomUUID().toString();
-        }
-    }
-
     @Override
     public int hashCode() {
-        return getGuid() != null ? getGuid().hashCode() : 0;
+        return getId() != null ? getId().hashCode() : 0;
     }
 
     @Override
@@ -47,15 +41,15 @@ public abstract class BaseEntity implements Entity {
         if (!(object instanceof BaseEntity)) {
             return false;
         }
-        return (getGuid() != null && ((BaseEntity) object).getGuid() != null && getGuid().equals(((BaseEntity) object).getGuid()));
+        return (getId() != null && ((BaseEntity) object).getId() != null && getId().equals(((BaseEntity) object).getId()));
     }
 
-    public String getGuid() {
-        return guid;
+    public Long getId() {
+        return id;
     }
 
-    public void setGuid(String guid) {
-        this.guid = guid;
+    public void setID(Long id) {
+        this.id = id;
     }
 
     public Date getLastEditingDate() {

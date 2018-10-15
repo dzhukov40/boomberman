@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.doneathome.boomberman.controller.controllerAPI.EchoController;
+import ru.doneathome.boomberman.model.User;
 import ru.doneathome.boomberman.repository.UserRepository;
 
 @RestController
@@ -30,6 +31,17 @@ public class EchoControllerImpl extends BaseControllerImpl implements EchoContro
         log.info("был запросик: " + arg);
 
         return arg;
+    }
+
+
+    @RequestMapping(path = "/getUser", method = RequestMethod.GET)
+    public @ResponseBody
+    User getUser() {
+        log.info("был запросик: ");
+
+        Long id = 1L;
+
+        return userRepository.findById(id).orElse(new User());
     }
 
 }

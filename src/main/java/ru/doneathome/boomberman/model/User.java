@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user")
+@Table(schema ="boomb",name = "user")
 public class User extends BaseEntity {
 
     public static final String P_LOGIN = "login";
