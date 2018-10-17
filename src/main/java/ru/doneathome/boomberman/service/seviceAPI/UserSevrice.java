@@ -7,7 +7,7 @@ import ru.doneathome.boomberman.model.User;
  */
 public interface UserSevrice {
 
-    User getUserByGuid(String userGuid);
+    User getUserById(Long userId);
     User getUserByLogin(String userLogin);
 
 }

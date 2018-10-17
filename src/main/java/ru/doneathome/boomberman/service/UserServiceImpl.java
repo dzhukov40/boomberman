@@ -9,19 +9,18 @@ import ru.doneathome.boomberman.service.seviceAPI.UserSevrice;
 @Service
 public class UserServiceImpl implements UserSevrice {
 
-    // @Autowired
-    // private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
 
     @Override
-    public User getUserByGuid(String userGuid) {
-        return null;
-        // return userRepository.getOne(userGuid);
+    public User getUserById(Long userId) {
+        return userRepository.findById(userId).orElse(null);
     }
 
     @Override
     public User getUserByLogin(String userLogin) {
-        return null;
-        //return userRepository.findByLogin(userLogin);
+        return userRepository.findByLogin(userLogin);
     }
+
 }

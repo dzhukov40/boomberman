@@ -48,7 +48,7 @@ public abstract class BaseEntity implements Entity {
         return id;
     }
 
-    public void setID(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
