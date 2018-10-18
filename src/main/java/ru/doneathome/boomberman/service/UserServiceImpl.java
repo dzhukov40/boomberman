@@ -23,4 +23,10 @@ public class UserServiceImpl implements UserSevrice {
         return userRepository.findByLogin(userLogin);
     }
 
+    @Override
+    public void createUser(User user) {
+        userRepository.save(user);
+    }
+
+
 }

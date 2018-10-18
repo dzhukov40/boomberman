@@ -124,6 +124,12 @@
     - создадим класс помошник, для создания необходимых сущностей в тестах 'modelBuilders'
 
 
+10) добавим утилитарные библиотеки, которые позволяют меньше писать кода
+  - добавим зависимость:
+    - compile("org.apache.commons:commons-lang3:${org_apache_commons_commons_lang3}")
+    - compile("commons-collections:commons-collections:${commons_collections_commons_collections}")
+
+
 
 
 

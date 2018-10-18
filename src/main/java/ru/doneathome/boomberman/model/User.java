@@ -12,17 +12,23 @@ public class User extends BaseEntity {
 
     public static final String P_LOGIN = "login";
     public static final String P_PASSWORD = "password";
+    public static final String P_IS_CONFIRMED = "is_confirmed";
 
     /**
      * мя пользователя
      */
-    @Column(columnDefinition = "login")
+    @Column(columnDefinition = P_LOGIN)
     private String login;
     /**
      * пароль пользователя
      */
-    @Column(columnDefinition = "password")
+    @Column(columnDefinition = P_PASSWORD)
     private String password;
+    /**
+     * флаг что пользователь подтвердил почту, которая логин
+     */
+    @Column(columnDefinition = P_IS_CONFIRMED)
+    private Boolean confirmed;
 
 
     public String getLogin() {
@@ -39,5 +45,13 @@ public class User extends BaseEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getConfirmed() {
+        return confirmed;
+    }
+
+    public void setConfirmed(Boolean confirmed) {
+        this.confirmed = confirmed;
     }
 }

@@ -9,5 +9,6 @@ public interface UserSevrice {
 
     User getUserById(Long userId);
     User getUserByLogin(String userLogin);
+    void createUser(User user);
 
 }

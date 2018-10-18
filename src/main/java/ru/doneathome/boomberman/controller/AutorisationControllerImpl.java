@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.doneathome.boomberman.DTO.UserDTO;
 import ru.doneathome.boomberman.mapper.Mapper;
 import ru.doneathome.boomberman.model.User;
-import ru.doneathome.boomberman.service.seviceAPI.AutarisationService;
+import ru.doneathome.boomberman.service.seviceAPI.AuthorizationService;
 
 @RestController
 @RequestMapping("/autarisation")
@@ -19,7 +19,7 @@ public class AutorisationControllerImpl extends BaseControllerImpl implements ru
     private static final Logger log = LoggerFactory.getLogger(AutorisationControllerImpl.class);
 
     @Autowired
-    private AutarisationService autarisationService;
+    private AuthorizationService authorizationService;
     @Autowired
     private Mapper mapper;
 

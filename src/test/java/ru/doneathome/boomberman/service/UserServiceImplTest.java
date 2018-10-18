@@ -23,10 +23,6 @@ public class UserServiceImplTest {
     private UserServiceImpl userService;
 
 
-    @Before
-    public void setUp() throws Exception {
-    }
-
     @Test
     public void getUserById() {
         final Long ID = 1L;
@@ -48,16 +44,5 @@ public class UserServiceImplTest {
 
         assert (testUser.equals(getUser));
     }
-
-
-
-
-
-
-
-
-
-
-
 
 }
