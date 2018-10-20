@@ -1,6 +1,5 @@
 package ru.doneathome.boomberman.service;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -9,6 +8,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import ru.doneathome.boomberman.model.User;
 import ru.doneathome.boomberman.repository.UserRepository;
 import ru.doneathome.boomberman.service.modelBuilders.UserBuilder;
+import ru.doneathome.boomberman.service.seviceImpl.UserServiceImpl;
 
 import java.util.Optional;
 

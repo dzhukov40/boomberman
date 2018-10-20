@@ -1,4 +1,4 @@
-package ru.doneathome.boomberman.service.seviceAPI;
+package ru.doneathome.boomberman.service;
 
 import ru.doneathome.boomberman.model.User;
 

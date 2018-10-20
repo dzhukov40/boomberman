@@ -1,11 +1,11 @@
-package ru.doneathome.boomberman.service;
+package ru.doneathome.boomberman.service.seviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.doneathome.boomberman.exception.ValidationException;
 import ru.doneathome.boomberman.model.User;
-import ru.doneathome.boomberman.service.seviceAPI.AuthorizationService;
-import ru.doneathome.boomberman.service.seviceAPI.UserSevrice;
+import ru.doneathome.boomberman.service.AuthorizationService;
+import ru.doneathome.boomberman.service.UserSevrice;
 import ru.doneathome.boomberman.validation.AuthorizationValidation;
 
 @Service

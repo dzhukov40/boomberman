@@ -1,4 +1,4 @@
-package ru.doneathome.boomberman.controller.controllerAPI;
+package ru.doneathome.boomberman.controller;
 
 /**
  * модуль для тестово пинга бека приложения

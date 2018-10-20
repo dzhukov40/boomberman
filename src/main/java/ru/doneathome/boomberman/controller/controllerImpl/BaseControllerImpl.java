@@ -1,4 +1,4 @@
-package ru.doneathome.boomberman.controller;
+package ru.doneathome.boomberman.controller.controllerImpl;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import ru.doneathome.boomberman.error.Error;
 import ru.doneathome.boomberman.exception.ValidationException;
 import ru.doneathome.boomberman.model.User;
-import ru.doneathome.boomberman.service.seviceAPI.UserSevrice;
+import ru.doneathome.boomberman.service.UserSevrice;
 
 
 @Component

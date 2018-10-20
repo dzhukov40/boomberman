@@ -1,10 +1,10 @@
-package ru.doneathome.boomberman.controller;
+package ru.doneathome.boomberman.controller.controllerImpl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.doneathome.boomberman.controller.controllerAPI.EchoController;
+import ru.doneathome.boomberman.controller.EchoController;
 import ru.doneathome.boomberman.model.User;
 import ru.doneathome.boomberman.repository.UserRepository;
 

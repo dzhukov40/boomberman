@@ -1,4 +1,4 @@
-package ru.doneathome.boomberman.controller.controllerAPI;
+package ru.doneathome.boomberman.controller;
 
 import ru.doneathome.boomberman.DTO.UserDTO;
 
