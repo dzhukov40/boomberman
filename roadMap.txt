@@ -130,9 +130,15 @@
     - compile("commons-collections:commons-collections:${commons_collections_commons_collections}")
 
 
-
-
-
+11) добавим авторизацию и аутентификацию
+  - добавим зависимость
+    - compile("org.springframework.boot:spring-boot-starter-security:${org_springframework_boot_spring_boot_starter_security}")
+  - теперь при запуске приложения в логе видим Mapping filter: 'springSecurityFilterChain' to: [/*]
+  - + видим в логе [ Using generated security password: dbc3d583-629f-4206-9f6d-6c51b0d41d47 ] (*)
+    - это по умолчанию создается пользователь с таким нагенеренном паролем
+  - если мы пойдем на сайт? нас будет перекидывать на страницу регистрации http://localhost:8070/login
+    - форма ввода Login и Password (*) можем войти как user и нагенеренный пароль
+  - переписали немного нашу базу данных и добавили таблицы РОЛИ и таблицу связей РОЛИ-ПОЛЬЗОВАТЕЛИ
 
 
 

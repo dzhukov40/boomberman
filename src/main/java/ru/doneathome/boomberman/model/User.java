@@ -2,9 +2,8 @@ package ru.doneathome.boomberman.model;
 
 import ru.doneathome.boomberman.model.baseEntity.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(schema ="boomb",name = "user")
@@ -12,23 +11,26 @@ public class User extends BaseEntity {
 
     public static final String P_LOGIN = "login";
     public static final String P_PASSWORD = "password";
-    public static final String P_IS_CONFIRMED = "is_confirmed";
 
     /**
-     * мя пользователя
+     * Имя пользователя
      */
     @Column(columnDefinition = P_LOGIN)
     private String login;
     /**
-     * пароль пользователя
+     * Пароль пользователя
      */
     @Column(columnDefinition = P_PASSWORD)
     private String password;
     /**
-     * флаг что пользователь подтвердил почту, которая логин
+     * Роли пользователя
      */
-    @Column(columnDefinition = P_IS_CONFIRMED)
-    private Boolean confirmed;
+    @ManyToMany()
+    @JoinTable(name = "boomb.user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles;
+
 
 
     public String getLogin() {
@@ -47,11 +49,11 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
-    public Boolean getConfirmed() {
-        return confirmed;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setConfirmed(Boolean confirmed) {
-        this.confirmed = confirmed;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }
