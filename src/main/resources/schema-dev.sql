@@ -25,7 +25,7 @@ CREATE TABLE boomb.role
 (
   id bigint NOT NULL,
   last_editing_date  TIMESTAMP NOT NULL,
-  name varchar(255) not null,
+  role_code varchar(255) not null,
 
   unique (id)
 );

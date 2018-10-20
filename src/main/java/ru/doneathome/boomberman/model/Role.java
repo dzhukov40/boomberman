@@ -10,20 +10,19 @@ import javax.persistence.Table;
 @Table(schema ="boomb",name = "role")
 public class Role extends BaseEntity {
 
-    public static final String P_NAME = "name";
-
+    public static final String P_ROLE_CODE = "role_code";
 
     /**
-     * имя роли
+     * код роли
      */
-    @Column(columnDefinition = P_NAME)
-    private String name;
+    @Column(columnDefinition = P_ROLE_CODE)
+    private String roleCode;
 
-    public String getName() {
-        return name;
+    public String getRoleCode() {
+        return roleCode;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRoleCode(String roleCode) {
+        this.roleCode = roleCode;
     }
 }
