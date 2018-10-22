@@ -1,4 +1,4 @@
-package ru.doneathome.boomberman.startPoint;
+package ru.doneathome.boomberman.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

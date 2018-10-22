@@ -8,10 +8,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.doneathome.boomberman.model.RoleType;
 import ru.doneathome.boomberman.model.User;
 import ru.doneathome.boomberman.service.UserSevrice;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -33,7 +35,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = userService.getUserByLogin(username);
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        user.getRoles().forEach(role -> grantedAuthorities.add(new SimpleGrantedAuthority(role.getName())));
+        user.getRoles().forEach(role -> grantedAuthorities
+                .add(new SimpleGrantedAuthority(Objects.requireNonNull(RoleType.getByCode(role.getRoleCode())).name())));
 
         return new org.springframework.security.core.userdetails.User(
                 user.getLogin(),

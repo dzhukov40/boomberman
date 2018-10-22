@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 import ru.doneathome.boomberman.service.SecurityService;
 
 @Service
-public class SecuretyServiceimpl implements SecurityService {
+public class SecurityServiceImpl implements SecurityService {
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
     private AuthenticationManager authenticationManager;

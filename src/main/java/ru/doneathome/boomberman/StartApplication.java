@@ -1,4 +1,4 @@
-package ru.doneathome.boomberman.startPoint;
+package ru.doneathome.boomberman;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

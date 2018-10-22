@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import ru.doneathome.boomberman.DTO.UserDTO;
-import ru.doneathome.boomberman.controller.AutorisationController;
+import ru.doneathome.boomberman.controller.AuthorizationController;
 import ru.doneathome.boomberman.mapper.Mapper;
 import ru.doneathome.boomberman.model.User;
 import ru.doneathome.boomberman.service.AuthorizationService;
 
 @RestController
 @RequestMapping("/autarisation")
-public class AutorisationControllerImpl extends BaseControllerImpl implements AutorisationController {
+public class AuthorizationControllerImpl extends BaseControllerImpl implements AuthorizationController {
 
-    private static final Logger log = LoggerFactory.getLogger(AutorisationControllerImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(AuthorizationControllerImpl.class);
 
     @Autowired
     private AuthorizationService authorizationService;
