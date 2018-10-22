@@ -154,7 +154,7 @@
   - посмотреть список веток 'git branch'
     - добавляем то что хотим вкомитить 'git add roadMap.txt'
     - сделать коммит 'git commit -m "добавили описание работы с ветками в гите"'
-    - сделать push 'git push'
+    - сделать push 'git push --set-upstream origin auth' (*) наверно это для первого раза так надо сделать
   - переключиться на мастер ветку 'git checkout master' назад на созданную 'git checkout auth'
   - мерж ветки в мастер 'git merge master'
 
