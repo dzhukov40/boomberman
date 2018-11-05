@@ -3,6 +3,7 @@ CREATE SCHEMA bomb;
 
 // TODO:// надо сделать наследование таблиц от общей
 
+DROP SCHEMA IF EXISTS boomb; // просто удалимс старое
 
 //---
 DROP TABLE IF EXISTS bomb.user;
