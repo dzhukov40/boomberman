@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(schema ="boomb",name = "user")
+@Table(schema ="bomb",name = "user")
 public class User extends BaseEntity {
 
     public static final String P_LOGIN = "login";
@@ -26,10 +26,10 @@ public class User extends BaseEntity {
      * Роли пользователя
      */
     @ManyToMany()
-    @JoinTable(name = "boomb.user_roles",
+    @JoinTable(name = "bomb.user_grant",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles;
+            inverseJoinColumns = @JoinColumn(name = "grant_id"))
+    private List<Grant> grants;
 
 
 
@@ -49,11 +49,11 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    public List<Grant> getGrants() {
+        return grants;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setGrants(List<Grant> grants) {
+        this.grants = grants;
     }
 }
