@@ -13,7 +13,7 @@ public class Grant extends BaseEntity {
     public static final String P_GRANT_CODE = "grant_code";
 
     /**
-     * код гранта
+     * код права
      */
     @Column(columnDefinition = P_GRANT_CODE)
     private String grantCode;

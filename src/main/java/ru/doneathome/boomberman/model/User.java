@@ -28,6 +28,14 @@ public class User extends BaseEntity {
     @ManyToMany()
     @JoinTable(name = "bomb.user_grant",
             joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles;
+    /**
+     * Права пользователя
+     */
+    @ManyToMany()
+    @JoinTable(name = "bomb.user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "grant_id"))
     private List<Grant> grants;
 
@@ -55,5 +63,13 @@ public class User extends BaseEntity {
 
     public void setGrants(List<Grant> grants) {
         this.grants = grants;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

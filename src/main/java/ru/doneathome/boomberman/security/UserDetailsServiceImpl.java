@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.doneathome.boomberman.model.User;
 import ru.doneathome.boomberman.security.enums.GrantType;
+import ru.doneathome.boomberman.security.enums.RoleType;
 import ru.doneathome.boomberman.service.UserSevrice;
 
 import java.util.HashSet;
@@ -40,8 +41,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        user.getGrants().forEach(grant -> grantedAuthorities
-                .add(new SimpleGrantedAuthority(Objects.requireNonNull(GrantType.getByCode(grant.getGrantCode())).name())));
+        user.getRoles().forEach(role -> grantedAuthorities
+                .add(new SimpleGrantedAuthority(Objects.requireNonNull(RoleType.getByCode(role.getRoleCode())).name())));
 
         return new org.springframework.security.core.userdetails.User(
                 user.getLogin(),

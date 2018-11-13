@@ -14,7 +14,7 @@ import ru.doneathome.boomberman.model.User;
 import ru.doneathome.boomberman.service.AuthorizationService;
 
 @RestController
-@RequestMapping("/autarisation")
+@RequestMapping("/authorization")
 public class AuthorizationControllerImpl extends BaseControllerImpl implements AuthorizationController {
 
     private static final Logger log = LoggerFactory.getLogger(AuthorizationControllerImpl.class);
