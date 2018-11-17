@@ -27,6 +27,7 @@
 
 
 var HttpLocal = window.HttpLocal;
+var AuthorizationService = new window.AuthorizationService;
 // const httpClient = new HttpClient();
 
 function sayHello(){
@@ -42,8 +43,12 @@ function testGetRequest(){
     HttpLocal.get('/echo',sendToConsole);
 }
 
-function postUser(){
-    HttpLocal.post('/autarisation/logIn',{login:"den",password:"pass..."},sendToConsole);
+function logIn(){
+   AuthorizationService.logIn("den","1234",sendToConsole)
+}
+
+function registration(){
+    AuthorizationService.registration("den","1234",sendToConsole)
 }
 
 

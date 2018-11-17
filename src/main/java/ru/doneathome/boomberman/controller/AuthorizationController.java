@@ -1,5 +1,6 @@
 package ru.doneathome.boomberman.controller;
 
+import org.springframework.http.ResponseEntity;
 import ru.doneathome.boomberman.DTO.UserDTO;
 
 /**
@@ -8,10 +9,18 @@ import ru.doneathome.boomberman.DTO.UserDTO;
 public interface AuthorizationController {
 
     /**
-     * логинемя
+     *
      * @param userDTO
+     * @return возвращает JWT если такой пользователь есть
      */
-    void logIn(UserDTO userDTO);
+    ResponseEntity<?> logIn(UserDTO userDTO);
+
+    /**
+     * регистрируем нового пользователя с таким паролем и логином
+     * @param userDTO
+     * @return
+     */
+    ResponseEntity<?> registration(UserDTO userDTO);
 
     /**
      * разлогиневаемся

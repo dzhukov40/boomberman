@@ -1,13 +1,13 @@
 package ru.doneathome.boomberman.exception;
 
-import ru.doneathome.boomberman.error.Error;
+import ru.doneathome.boomberman.error.ErrorType;
 
 public class ValidationException extends ErrorException {
 
     public ValidationException() {
     }
 
-    public ValidationException(Error error) {
-        super(error);
+    public ValidationException(ErrorType errorType) {
+        super(errorType);
     }
 }

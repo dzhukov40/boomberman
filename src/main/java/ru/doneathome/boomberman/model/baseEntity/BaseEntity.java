@@ -14,7 +14,7 @@ public abstract class BaseEntity implements Entity {
 
     @Id
     @Column(name = P_ID, nullable = false)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
     @Column(name = P_LAST_EDITING_DATE, nullable = false)

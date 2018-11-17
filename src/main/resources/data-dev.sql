@@ -8,22 +8,9 @@
 
 // добавим пользователея для примера авторизации
 select * from bomb.user;
-insert into bomb.user values (1,'2018-02-02T00:00:00+00:00','admin','admin');
-insert into bomb.user values (2,'2018-03-02T00:00:00+00:00','den','12345');
-insert into bomb.user values (3,'2018-04-02T00:00:00+00:00','imba','qwerty');
-
-
-// это различные роли, которые могут быть у пользователя
-select * from bomb.role;
-insert into bomb.role values (1,'2018-04-02T00:00:00+00:00','ADMIN');
-insert into bomb.role values (2,'2018-04-02T00:00:00+00:00','USER');
-
-
-// установим связи 'user' <-> 'role'
-select * from bomb.user_role;
-insert into bomb.user_role values (1,'2018-04-02T00:00:00+00:00', 1, 1);
-insert into bomb.user_role values (2,'2018-04-02T00:00:00+00:00', 2, 2);
-insert into bomb.user_role values (3,'2018-04-02T00:00:00+00:00', 3, 2);
+insert into bomb.user values (1,'2018-02-02T00:00:00+00:00','admin','admin','ADMIN');
+insert into bomb.user values (2,'2018-03-02T00:00:00+00:00','den','12345','USER');
+insert into bomb.user values (3,'2018-04-02T00:00:00+00:00','imba','qwerty','USER');
 
 
 // это различные права, которые могут быть в любом количестве у любого пользователя

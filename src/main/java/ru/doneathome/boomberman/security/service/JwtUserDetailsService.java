@@ -1,4 +1,4 @@
-package ru.doneathome.boomberman.security;
+package ru.doneathome.boomberman.security.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -9,12 +9,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.doneathome.boomberman.model.User;
-import ru.doneathome.boomberman.security.enums.GrantType;
-import ru.doneathome.boomberman.security.enums.RoleType;
-import ru.doneathome.boomberman.service.UserSevrice;
+import ru.doneathome.boomberman.service.UserService;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import static java.util.Objects.isNull;
@@ -26,10 +23,10 @@ import static java.util.Objects.isNull;
  * пользователя и его ролей из BD
  */
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class JwtUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserSevrice userService;
+    private UserService userService;
 
 
     @Override
@@ -41,9 +38,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        user.getRoles().forEach(role -> grantedAuthorities
-                .add(new SimpleGrantedAuthority(Objects.requireNonNull(RoleType.getByCode(role.getRoleCode())).name())));
+        grantedAuthorities.add(new SimpleGrantedAuthority(user.getRoleCode()));
 
+        // есть и другие конструкторы, пожирнее
         return new org.springframework.security.core.userdetails.User(
                 user.getLogin(),
                 user.getPassword(),

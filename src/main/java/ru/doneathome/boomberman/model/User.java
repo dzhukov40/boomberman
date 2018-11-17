@@ -11,6 +11,7 @@ public class User extends BaseEntity {
 
     public static final String P_LOGIN = "login";
     public static final String P_PASSWORD = "password";
+    public static final String P_ROLE_CODE = "role_code";
 
     /**
      * Имя пользователя
@@ -23,13 +24,10 @@ public class User extends BaseEntity {
     @Column(columnDefinition = P_PASSWORD)
     private String password;
     /**
-     * Роли пользователя
+     * код роли пользователя
      */
-    @ManyToMany()
-    @JoinTable(name = "bomb.user_grant",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles;
+    @Column(columnDefinition = P_ROLE_CODE)
+    private String roleCode;
     /**
      * Права пользователя
      */
@@ -65,11 +63,11 @@ public class User extends BaseEntity {
         this.grants = grants;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    public String getRoleCode() {
+        return roleCode;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setRoleCode(String roleCode) {
+        this.roleCode = roleCode;
     }
 }

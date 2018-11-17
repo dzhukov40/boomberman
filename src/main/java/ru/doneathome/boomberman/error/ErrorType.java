@@ -5,22 +5,25 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public enum Error implements OperationErrorCode {
+public enum ErrorType implements OperationErrorCode {
 
-    INT002001("Логин уже занят"),
-    INT002002("Такого пользователя нет");
+    INT002001("INT002001", "Логин уже занят"),
+    INT002002("INT002002", "Такого пользователя нет"),
+    INT002003("INT002003", "Пароль не подходит");
 
 
-    private static Map<String, Error> MAPPED_BY_NAME = Arrays.stream(values()).collect(Collectors.toMap(Enum::name, Function.identity()));
+    private static Map<String, ErrorType> MAPPED_BY_NAME = Arrays.stream(values()).collect(Collectors.toMap(Enum::name, Function.identity()));
+    private String code;
     private String pattern;
 
-    Error(String pattern) {
+    ErrorType(String code, String pattern) {
+        this.code = code;
         this.pattern = pattern;
     }
 
     @Override
     public String getCode() {
-        return this.name();
+        return code;
     }
 
     @Override
@@ -37,7 +40,7 @@ public enum Error implements OperationErrorCode {
         }
     }
 
-    public static Error getByName(String name) {
+    public static ErrorType getByName(String name) {
         return MAPPED_BY_NAME.get(name);
     }
 
