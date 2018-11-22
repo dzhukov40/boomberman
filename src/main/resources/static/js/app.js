@@ -26,9 +26,12 @@
 // import * as sendToServer from './sendToServer';
 
 
-var HttpLocal = window.HttpLocal;
-var AuthorizationService = new window.AuthorizationService;
-// const httpClient = new HttpClient();
+
+const AuthorizationService = window.AuthorizationService;
+const HttpLocal = window.HttpLocal;
+
+
+
 
 function sayHello(){
     alert("sayHello()");
@@ -44,11 +47,17 @@ function testGetRequest(){
 }
 
 function logIn(){
-   AuthorizationService.logIn("den","1234",sendToConsole)
+    var login = document.getElementById('loginTextInput').value;
+    var password = document.getElementById('passwordTextInput').value;
+
+    AuthorizationService.logIn(login,password,sendToConsole)
 }
 
 function registration(){
-    AuthorizationService.registration("den","1234",sendToConsole)
+    var login = document.getElementById('loginTextInput').value;
+    var password = document.getElementById('passwordTextInput').value;
+
+    AuthorizationService.registration(login,password,sendToConsole)
 }
 
 

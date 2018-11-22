@@ -16,23 +16,19 @@
         constructor() {
         }
 
-        logIn(userName, password, callback) {
-            var body = {userName, password};
+        static logIn(login, password, callback) {
+            var body = {login, password};
             HttpLocal.post(LOG_IN, body, callback);
         }
 
-        registration(userName, password, callback) {
-            var body = {userName, password};
-            HttpLocal.post(LOG_IN, body, callback);
+        static registration(login, password, callback) {
+            var body = {login, password};
+            HttpLocal.post(REGISTRATION, body, callback);
         }
 
-        logOut(callback) {
+        static logOut(callback) {
             HttpLocal.get(LOG_OUT, callback);
         }
-
-
-
-
 
     }
 
