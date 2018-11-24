@@ -46,7 +46,7 @@ public class AuthorizationControllerImpl extends BaseControllerImpl implements A
         log.info("logIn " + user.getLogin() + " " + user.getPassword());
 
         try {
-            return HttpResponseEntityBuilder.OkResponse("JWT", authorizationService.logIn(user));
+            return HttpResponseEntityBuilder.OkResponse("JWT_TOKEN", authorizationService.logIn(user));
         } catch (ValidationException e) {
             return HttpResponseEntityBuilder.ErrorResponse(e.getErrorType());
         }

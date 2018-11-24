@@ -4,6 +4,7 @@
 (function () {
 
     var HttpLocal = window.HttpLocal;
+    const TOKEN = window.TOKEN;
 
     const AUTHORIZATION_SERVICE_PATH = '/authorization';
     const LOG_IN = AUTHORIZATION_SERVICE_PATH + '/logIn';
@@ -12,31 +13,13 @@
     const IS_LOG_IN = AUTHORIZATION_SERVICE_PATH + '/isLogIn';
 
 
-    const TOKEN_KEY = "jwtToken"
-
-    function getJwtToken() {
-        return localStorage.getItem(TOKEN_KEY);
-    }
-
-    function setJwtToken(token) {
-        localStorage.setItem(TOKEN_KEY, token);
-    }
-
-    function removeJwtToken() {
-        localStorage.removeItem(TOKEN_KEY);
-    }
-
-
-
-
-
     function checklogIn(response) {
         var response = JSON.parse(response.responseText);
         var header = response.header;
         var body = response.body;
 
-        if (header === "JWT") {
-            setJwtToken(body);
+        if (header === TOKEN.JWT) {
+            localStorage.setItem(TOKEN.JWT, body);
         }
         console.log(header);
         console.log(body);
@@ -70,6 +53,8 @@
 
         static logOut(callback) {
             HttpLocal.get(LOG_OUT, callback);
+
+            localStorage.removeItem(TOKEN.JWT);
         }
 
     }

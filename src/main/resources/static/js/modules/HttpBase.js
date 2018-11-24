@@ -27,7 +27,7 @@
         constructor() {
         }
 
-        static get(url, callback) {
+        static get(url, headers, callback) {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', url, true);
             xhr.onload = function() {
@@ -35,12 +35,15 @@
                     callback(this);
                 }
             };
+
+            headers.forEach( (v,k) => {xhr.setRequestHeader(k, v);} );
+
             xhr.timeout = timeout;
 
             xhr.send();
         }
 
-        static post(url, body, callback) {
+        static post(url, body, headers, callback) {
             var xhr = new XMLHttpRequest();
             xhr.open('POST', url, true);
             xhr.onload = function() {
@@ -48,7 +51,9 @@
                     callback(this);
                 }
             };
-            xhr.setRequestHeader('Content-Type','application/json; charset=utf8');
+
+            headers.forEach( (v,k) => {xhr.setRequestHeader(k, v);} );
+
             xhr.timeout = timeout;
 
             xhr.send(JSON.stringify(body));

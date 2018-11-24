@@ -61,6 +61,13 @@ function registration(){
 }
 
 
+function logOut() {
+    AuthorizationService.logOut(sendToConsole);
+}
+
+
+
+
 function sendToConsole(msg) {
     console.log(msg);
 }
