@@ -1,6 +1,6 @@
 package ru.doneathome.boomberman.DTO;
 
-public class UserDTO {
+public class UserDto {
     /**
      * логин пользователя
      */

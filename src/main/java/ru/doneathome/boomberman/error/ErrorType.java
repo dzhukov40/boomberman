@@ -9,7 +9,9 @@ public enum ErrorType implements OperationErrorCode {
 
     INT002001("INT002001", "Логин уже занят"),
     INT002002("INT002002", "Такого пользователя нет"),
-    INT002003("INT002003", "Пароль не подходит");
+    INT002003("INT002003", "Пароль не подходит"),
+
+    AUT002001("AUT002001", "пользователь должен быть авторизован");
 
 
     private static Map<String, ErrorType> MAPPED_BY_NAME = Arrays.stream(values()).collect(Collectors.toMap(Enum::name, Function.identity()));

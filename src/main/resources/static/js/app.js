@@ -37,14 +37,21 @@ function sayHello(){
     alert("sayHello()");
 }
 
-
-
-
-
-
 function testGetRequest(){
     HttpLocal.get('/echo',sendToConsole);
 }
+
+function testShowErrorMessage(){
+    console.log("пук");
+}
+
+function testSendMessage(){
+    HttpLocal.get('/chat/send',sendToConsole);
+}
+
+
+
+
 
 function logIn(){
     var login = document.getElementById('loginTextInput').value;
