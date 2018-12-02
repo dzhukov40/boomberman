@@ -10,6 +10,7 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,7 +31,9 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
     private final JwtTokenUtil jwtTokenUtil;
     private final String tokenHeader;
 
-    public JwtAuthorizationTokenFilter(UserDetailsService userDetailsService, JwtTokenUtil jwtTokenUtil, @Value("${jwt.header}") String tokenHeader) {
+
+    public JwtAuthorizationTokenFilter(@Qualifier("JwtUserDetailsService") UserDetailsService userDetailsService,
+                                       JwtTokenUtil jwtTokenUtil, @Value("${jwt.header}") String tokenHeader) {
         this.userDetailsService = userDetailsService;
         this.jwtTokenUtil = jwtTokenUtil;
         this.tokenHeader = tokenHeader;
@@ -38,12 +41,10 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
-        logger.debug("processing authentication for '{}'", request.getRequestURL());
-
         final String requestHeader = request.getHeader(this.tokenHeader);
-
         String username = null;
         String authToken = null;
+
         if (requestHeader == null) {
             logger.warn("в запросе не удалось найти заголовок " + this.tokenHeader);
         } else if(!requestHeader.startsWith(BEARER)) {
@@ -60,14 +61,9 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            logger.debug("контекст безопасности был нулевым, поэтому авторизация пользователя");
-
-            // It is not compelling necessary to load the use details from the database. You could also store the information
-            // in the token and read it from it. It's up to you ;)
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 
-            // For simple validation it is completely sufficient to just check the token integrity. You don't have to call
-            // the database compellingly. Again it's up to you ;)
+            // Валидируем токен, есл все хорошо, засовываем токен в контекст сессии этого запроса
             if (jwtTokenUtil.validateToken(authToken, userDetails)) {
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

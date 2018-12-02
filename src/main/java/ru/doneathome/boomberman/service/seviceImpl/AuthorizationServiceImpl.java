@@ -26,7 +26,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
         authorizationValidation.toValidateUserExist(user);
         authorizationValidation.toValidatePassword(logInUser.getPassword(), user.getPassword());
 
-        return securityService.autoLogIn(logInUser.getLogin(), logInUser.getPassword());
+        return securityService.authenticate(logInUser.getLogin(), logInUser.getPassword());
     }
 
     @Override

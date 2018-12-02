@@ -1,6 +1,5 @@
 package ru.doneathome.boomberman.service;
 
-import ru.doneathome.boomberman.security.service.JwtAuthenticationResponse;
 
 /**
  *
@@ -18,6 +17,6 @@ public interface SecurityService {
      * @param username
      * @param password
      */
-    String autoLogIn(String username, String password);
+    String authenticate(String username, String password);
 
 }

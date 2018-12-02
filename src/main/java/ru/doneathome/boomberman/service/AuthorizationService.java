@@ -1,9 +1,7 @@
 package ru.doneathome.boomberman.service;
 
-import ru.doneathome.boomberman.exception.RegistrationException;
 import ru.doneathome.boomberman.exception.ValidationException;
 import ru.doneathome.boomberman.model.User;
-import ru.doneathome.boomberman.security.service.JwtAuthenticationResponse;
 
 public interface AuthorizationService {
 

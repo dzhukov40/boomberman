@@ -22,7 +22,7 @@ import static java.util.Objects.isNull;
  * Тут имплементируем спринговый интерфейс и реализуем метод получения
  * пользователя и его ролей из BD
  */
-@Service
+@Service("JwtUserDetailsService")
 public class JwtUserDetailsService implements UserDetailsService {
 
     @Autowired

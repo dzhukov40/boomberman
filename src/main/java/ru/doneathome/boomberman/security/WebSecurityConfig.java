@@ -22,21 +22,25 @@ import ru.doneathome.boomberman.security.service.JwtUserDetailsService;
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final String URL_WILDCARD = "/**";
+
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
 
     @Autowired
     private JwtUserDetailsService jwtUserDetailsService;
 
-    // Custom JWT based security filter
+    // наш фильтр, где мы будем вытаскивать из заголовка токен, валидировать, засовывать в контекст
     @Autowired
     JwtAuthorizationTokenFilter authenticationTokenFilter;
 
     @Value("${jwt.header}")
     private String tokenHeader;
-
     @Value("${jwt.route.authentication.path}")
     private String authenticationPath;
+    @Value("${spring.h2.console.path}")
+    private  String h2consolePath;
+
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -63,34 +67,32 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // три этих разрешения необходимы для доступа к консоли лю
         http
-                .csrf().disable()
+                .csrf().disable()  // для нас необходима работа h2 консоли
 
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)// don't create session
                 .and()
                 .authorizeRequests()
-                .antMatchers("/h2-**").permitAll()
-                .antMatchers("/authorization/**").permitAll()
-                .antMatchers("/echo/**").permitAll()
+                .antMatchers(h2consolePath + URL_WILDCARD).permitAll()
+                .antMatchers(authenticationPath + URL_WILDCARD).permitAll()
+                .antMatchers("/echo" + URL_WILDCARD).permitAll()
                 .anyRequest().authenticated();
 
         http
                 .headers()
-                .frameOptions().sameOrigin()  // required to set for H2 else H2 Console will be blank.
+                .frameOptions().sameOrigin()  // для нас необходима работа h2 консоли
                 .cacheControl();
 
-        // это добавление нами написанного фильтра {@link  JwtAuthorizationTokenFilter} в цепочку фильтров
+        // это добавление нами написанного фильтра "JwtAuthorizationTokenFilter" в цепочку фильтров
         http.addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
-
     }
 
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        // AuthenticationTokenFilter will ignore the below paths
+        // разрешаем всем работать в API авторизации
         web
                 .ignoring()
                 .antMatchers(
@@ -98,22 +100,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         authenticationPath
                 )
 
-                // allow anonymous resource requests
+                // разрешаем всем получать статику
                 .and()
                 .ignoring()
                 .antMatchers(
                         HttpMethod.GET,
                         "/",
                         "/*.html",
-                        "/favicon.ico",
                         "/**/*.html",
                         "/**/*.css",
                         "/**/*.js"
                 )
 
-                // Un-secure H2 Database (for testing purposes, H2 console shouldn't be unprotected in production)
+                // необхожимо игнорировать url h2 консоли
                 .and()
                 .ignoring()
-                .antMatchers("/h2-console/**/**");
+                .antMatchers(h2consolePath + URL_WILDCARD);
     }
 }
