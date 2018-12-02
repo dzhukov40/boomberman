@@ -51,9 +51,7 @@
             HttpLocal.post(REGISTRATION, body, checkRegistration);
         }
 
-        static logOut(callback) {
-            HttpLocal.get(LOG_OUT, callback);
-
+        static logOut() {
             localStorage.removeItem(TOKEN.JWT);
         }
 

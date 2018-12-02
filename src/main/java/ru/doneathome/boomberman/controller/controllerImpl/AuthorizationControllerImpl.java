@@ -28,8 +28,6 @@ public class AuthorizationControllerImpl extends BaseControllerImpl implements A
     private static final Logger log = LoggerFactory.getLogger(AuthorizationControllerImpl.class);
 
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-    @Autowired
     private AuthorizationService authorizationService;
     @Autowired
     private UserService userService;

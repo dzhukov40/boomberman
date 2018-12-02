@@ -6,8 +6,10 @@ import ru.doneathome.boomberman.model.User;
 public interface AuthorizationService {
 
     /**
-     * Входим
-     * @param user
+     * Авторизиремся в системе, получаем JWT токен при успехе
+     * @param user логин и пароль
+     * @return получаем JWT токен
+     * @throws ValidationException
      */
     String logIn(User user) throws ValidationException;
 

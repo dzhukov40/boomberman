@@ -69,7 +69,7 @@ function registration(){
 
 
 function logOut() {
-    AuthorizationService.logOut(sendToConsole);
+    AuthorizationService.logOut();
 }
 
 
