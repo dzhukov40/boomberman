@@ -5,7 +5,8 @@
 (function () {
 
     const TOKEN = {
-        JWT: 'JWT_TOKEN'
+        JWT: 'JWT_TOKEN',
+        AUTH: 'Authorization'
 
     };
 

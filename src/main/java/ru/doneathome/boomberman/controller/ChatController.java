@@ -1,5 +1,6 @@
 package ru.doneathome.boomberman.controller;
 
+import org.springframework.http.ResponseEntity;
 import ru.doneathome.boomberman.DTO.MessageDto;
 
 /**
@@ -10,7 +11,12 @@ public interface ChatController {
      * отправляем сообщение
      * @param messageDto
      */
+    ResponseEntity<?> sendMessage(MessageDto messageDto);
 
-    void sendMessage(MessageDto messageDto);
+    /**
+     * получаем пук, если пользователь авторизирован
+     * @return
+     */
+    ResponseEntity<?> getMessage();
 
 }

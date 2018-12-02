@@ -46,7 +46,7 @@ function testShowErrorMessage(){
 }
 
 function testSendMessage(){
-    HttpLocal.get('/chat/send',sendToConsole);
+    HttpLocal.get('/chat/get',sendToConsole);
 }
 
 

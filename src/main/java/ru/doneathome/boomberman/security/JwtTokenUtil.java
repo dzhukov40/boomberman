@@ -20,7 +20,6 @@ public class JwtTokenUtil implements Serializable {
 
     static final String CLAIM_KEY_USERNAME = "sub";
     static final String CLAIM_KEY_CREATED = "iat";
-    private static final long serialVersionUID = -3301605591108950415L;
     private Clock clock = DefaultClock.INSTANCE;
 
     @Value("${jwt.secret}")
@@ -106,15 +105,11 @@ public class JwtTokenUtil implements Serializable {
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {
-        JwtUser user = (JwtUser) userDetails;
         final String username = getUsernameFromToken(token);
         final Date created = getIssuedAtDateFromToken(token);
-        //final Date expiration = getExpirationDateFromToken(token);
-        return (
-                username.equals(user.getUsername())
-                        && !isTokenExpired(token)
-                        && !isCreatedBeforeLastPasswordReset(created, user.getLastPasswordResetDate())
-        );
+        final Date expiration = getExpirationDateFromToken(token);
+
+        return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
     }
 
     private Date calculateExpirationDate(Date createdDate) {

@@ -8,9 +8,9 @@
 
 // добавим пользователея для примера авторизации
 select * from bomb.user;
-insert into bomb.user values (1,'2018-02-02T00:00:00+00:00','admin','admin','ADMIN');
-insert into bomb.user values (2,'2018-03-02T00:00:00+00:00','den','12345','USER');
-insert into bomb.user values (3,'2018-04-02T00:00:00+00:00','imba','qwerty','USER');
+insert into bomb.user values (1,'2018-02-02T00:00:00+00:00','admin','$2a$04$ssTLIBWeXE7dSU24PYO/hOEDaIGI13ZQohvuwdMg772aNwDJr.Q3.','ADMIN');
+insert into bomb.user values (2,'2018-03-02T00:00:00+00:00','den','$2a$04$WDzSQmaowUcyX1ZK6NbgqOhiWMisJiPNa4j9xYcubVYuCF6rJ7eaK','USER');
+insert into bomb.user values (3,'2018-04-02T00:00:00+00:00','imba','$2a$04$Hgn8AWHTVNCHAGkWf.IHHuCvj/HlbU/tsQbO4zMERZNAzs82ojlZG','USER');
 
 
 // это различные права, которые могут быть в любом количестве у любого пользователя

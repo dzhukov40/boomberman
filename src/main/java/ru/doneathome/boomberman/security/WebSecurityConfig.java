@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import ru.doneathome.boomberman.security.service.JwtUserDetailsService;
 
 
@@ -66,16 +67,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
 
-                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
+                .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)// don't create session
                 .and()
-
                 .authorizeRequests()
-                .antMatchers("/h2-**","/authorization/**","/echo/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
+                .antMatchers("/h2-**").permitAll()
+                .antMatchers("/authorization/**").permitAll()
+                .antMatchers("/echo/**").permitAll()
+                .anyRequest().authenticated();
 
-                .headers().frameOptions().disable();
+        http
+                .headers()
+                .frameOptions().sameOrigin()  // required to set for H2 else H2 Console will be blank.
+                .cacheControl();
+
+        // это добавление нами написанного фильтра {@link  JwtAuthorizationTokenFilter} в цепочку фильтров
+        http.addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
     }
 
