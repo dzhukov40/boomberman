@@ -16,17 +16,16 @@ public class EchoControllerImpl extends BaseControllerImpl implements EchoContro
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping(method = RequestMethod.GET)
     @Override
+    @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody String echo() {
         log.info("был запросик");
 
         return "Hello world!";
     }
 
-
-    @RequestMapping(method = RequestMethod.POST)
     @Override
+    @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody String echo(@RequestBody String arg) {
         log.info("был запросик: " + arg);
 
@@ -35,8 +34,7 @@ public class EchoControllerImpl extends BaseControllerImpl implements EchoContro
 
 
     @RequestMapping(path = "/getUser", method = RequestMethod.GET)
-    public @ResponseBody
-    User getUser() {
+    public @ResponseBody User getUser() {
         log.info("был запросик: ");
 
         Long id = 1L;

@@ -10,6 +10,11 @@ repositories {
 }
 
 apply plugin: 'java'
+// у нас есть таска 'verification.check' - вывод в консоль проблемок,
+// а добавив этот плагин сможем генерить файл с отчетоп по найденным ошибкам
+//apply plugin: 'findbugs' //позволяет ичкать баги в коде и создаввать отчет
+
+
 
 // тут будкм указывать версию подключаемой зависимости
 ext{
@@ -25,6 +30,7 @@ ext{
     javax_xml_bind_jaxb_api='2.3.0';
     org_apache_commons_commons_lang3='3.3.1';
     commons_collections_commons_collections='3.2.2';
+    io_jsonwebtoken_jjwt='0.9.1';
 }
 
 
@@ -41,6 +47,8 @@ dependencies {
     compile("javax.xml.bind:jaxb-api:${javax_xml_bind_jaxb_api}")
     compile("org.apache.commons:commons-lang3:${org_apache_commons_commons_lang3}")
     compile("commons-collections:commons-collections:${commons_collections_commons_collections}")
+
+    compile("io.jsonwebtoken:jjwt:${io_jsonwebtoken_jjwt}")
 
     testCompile("org.springframework.boot:spring-boot-starter-test:${org_springframework_boot_spring_boot_starter_test}")
 }

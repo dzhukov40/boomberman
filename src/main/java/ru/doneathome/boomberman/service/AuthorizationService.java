@@ -1,16 +1,17 @@
 package ru.doneathome.boomberman.service;
 
-import ru.doneathome.boomberman.exception.RegistrationException;
 import ru.doneathome.boomberman.exception.ValidationException;
 import ru.doneathome.boomberman.model.User;
 
 public interface AuthorizationService {
 
     /**
-     * Входим
-     * @param user
+     * Авторизиремся в системе, получаем JWT токен при успехе
+     * @param user логин и пароль
+     * @return получаем JWT токен
+     * @throws ValidationException
      */
-    void logIn(User user) throws ValidationException;
+    String logIn(User user) throws ValidationException;
 
     /**
      * Выходим

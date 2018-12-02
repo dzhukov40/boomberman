@@ -1,14 +1,14 @@
 package ru.doneathome.boomberman.exception;
 
-import ru.doneathome.boomberman.error.Error;
+import ru.doneathome.boomberman.error.ErrorType;
 
 public class RegistrationException extends ErrorException {
 
     public RegistrationException() {
     }
 
-    public RegistrationException(Error error) {
-        super(error);
+    public RegistrationException(ErrorType errorType) {
+        super(errorType);
     }
 
 }

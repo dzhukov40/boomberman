@@ -1,5 +1,6 @@
 package ru.doneathome.boomberman.service;
 
+
 /**
  *
  */
@@ -16,6 +17,6 @@ public interface SecurityService {
      * @param username
      * @param password
      */
-    void autoLogIn(String username, String password);
+    String authenticate(String username, String password);
 
 }

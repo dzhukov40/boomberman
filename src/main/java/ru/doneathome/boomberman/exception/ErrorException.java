@@ -1,23 +1,23 @@
 package ru.doneathome.boomberman.exception;
 
-import ru.doneathome.boomberman.error.Error;
+import ru.doneathome.boomberman.error.ErrorType;
 
 public abstract class ErrorException extends Exception {
 
-    private Error error;
+    private ErrorType errorType;
 
     public ErrorException(){}
 
-    public ErrorException(Error error) {
-        this.error = error;
+    public ErrorException(ErrorType errorType) {
+        this.errorType = errorType;
     }
 
-    public Error getError() {
-        return error;
+    public ErrorType getErrorType() {
+        return errorType;
     }
 
-    public void setError(Error error) {
-        this.error = error;
+    public void setErrorType(ErrorType errorType) {
+        this.errorType = errorType;
     }
 
 }

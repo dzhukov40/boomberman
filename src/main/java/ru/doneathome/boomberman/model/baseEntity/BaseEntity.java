@@ -1,10 +1,7 @@
 package ru.doneathome.boomberman.model.baseEntity;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * простановка гуида .setGuid(UUID.randomUUID().toString())
@@ -17,7 +14,7 @@ public abstract class BaseEntity implements Entity {
 
     @Id
     @Column(name = P_ID, nullable = false)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
     @Column(name = P_LAST_EDITING_DATE, nullable = false)

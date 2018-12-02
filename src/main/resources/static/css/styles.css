@@ -11,12 +11,12 @@ html, body {
 
 /*стили для панели логина*/
 .login-panel {
-    width: 160px;
-    background: #ECF5E4;
+    width: 260px;
+    height: 100px;
+    background: #042a42;
     border-right: 1px solid #231F20;
     top: 82px; /* Расстояние от верхнего края */
     bottom: 0; /* Расстояние снизу  */
-    height: 100px;
 }
 
 .title-login-panel {
@@ -40,4 +40,8 @@ html, body {
 .password-panel-input {
     width: 80px;
     height: 30px;
+}
+
+#error-message-registration {
+    color: #cd0808;
 }

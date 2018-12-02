@@ -26,25 +26,53 @@
 // import * as sendToServer from './sendToServer';
 
 
-var HttpLocal = window.HttpLocal;
-// const httpClient = new HttpClient();
+
+const AuthorizationService = window.AuthorizationService;
+const HttpLocal = window.HttpLocal;
+
+
+
 
 function sayHello(){
     alert("sayHello()");
 }
 
-
-
-
-
-
 function testGetRequest(){
     HttpLocal.get('/echo',sendToConsole);
 }
 
-function postUser(){
-    HttpLocal.post('/autarisation/logIn',{login:"den",password:"pass..."},sendToConsole);
+function testShowErrorMessage(){
+    console.log("пук");
 }
+
+function testSendMessage(){
+    HttpLocal.get('/chat/get',sendToConsole);
+}
+
+
+
+
+
+function logIn(){
+    var login = document.getElementById('loginTextInput').value;
+    var password = document.getElementById('passwordTextInput').value;
+
+    AuthorizationService.logIn(login,password,sendToConsole)
+}
+
+function registration(){
+    var login = document.getElementById('loginTextInput').value;
+    var password = document.getElementById('passwordTextInput').value;
+
+    AuthorizationService.registration(login,password,sendToConsole)
+}
+
+
+function logOut() {
+    AuthorizationService.logOut();
+}
+
+
 
 
 function sendToConsole(msg) {

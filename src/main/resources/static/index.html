@@ -1,7 +1,6 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script language="javascript" type="text/javascript" src="js/app.js"></script>
 </head>
 <html>
 <body>
@@ -14,27 +13,63 @@
 
 
 
+    <div class="login-panel">
+        <form id="loginForm">
+            <div class="form-group">
+                <input type="text" class="form-control" id="loginTextInput" placeholder="login"
+                       required name="username">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="passwordTextInput" placeholder="password"
+                       required name="password">
+            </div>
+            <button type="button" class="btn btn-default" onclick="logIn()">login</button>
+            <button type="button" class="btn btn-default" onclick="registration()">registration</button>
+            <button type="button" class="btn btn-default" onclick="logOut()">logOut</button>
+        </form>
+
+    </div>
+
+
+
+
+
 
 
 </div>
-
-
-    <script src="js/blocks/Block.js"></script>
-    <script src="js/blocks/form.js"></script>
-
-    <script src="js/modules/HttpBase.js"></script>
-    <script src="js/modules/HttpLocal.js"></script>
-
-    <script src="js/app.js"></script>
+<br>
+<br>
+<br>
+<br>
+<button class="btn btn-default" onclick="sayHello()">sayHello()</button>
+<button class="btn btn-default" onclick="testGetRequest()">testGetRequest()</button>
+<button class="btn btn-default" onclick="testShowErrorMessage()">testShowErrorMessage</button>
+<button class="btn btn-default" onclick="testSendMessage()">testSendMessage</button>
 
 
 </div>
 <div id="footer">
-    <button onclick="sayHello()">sayHello()</button>
-    <button onclick="testGetRequest()">testGetRequest()</button>
-    <button onclick="postUser()">postUser()</button>
+
 
 
 </div>
+
+
+<div id="js">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="js/blocks/Block.js"></script>
+    <script src="js/blocks/form.js"></script>
+
+    <script src="js/enums/Token.js"></script>
+
+    <script src="js/modules/HttpBase.js"></script>
+    <script src="js/modules/HttpLocal.js"></script>
+
+    <script src="js/services/AuthorizationService.js"></script>
+
+    <script src="js/app.js"></script>
+</div>
+
 </body>
 </html>

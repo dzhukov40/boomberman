@@ -12,7 +12,7 @@
 
 
     <mapping>
-        <class-a>ru.doneathome.boomberman.DTO.UserDTO</class-a>
+        <class-a>ru.doneathome.boomberman.DTO.UserDto</class-a>
         <class-b>ru.doneathome.boomberman.model.User</class-b>
     </mapping>
 

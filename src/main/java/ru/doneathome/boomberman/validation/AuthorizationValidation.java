@@ -1,33 +1,40 @@
 package ru.doneathome.boomberman.validation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-import ru.doneathome.boomberman.error.Error;
+import ru.doneathome.boomberman.error.ErrorType;
 import ru.doneathome.boomberman.exception.ValidationException;
 import ru.doneathome.boomberman.model.User;
-import ru.doneathome.boomberman.service.UserSevrice;
+import ru.doneathome.boomberman.service.UserService;
 
 
 @Component
 public class AuthorizationValidation {
 
     @Autowired
-    private UserSevrice userSevrice;
+    private UserService userService;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-    public void toValedUserExist(User user) throws ValidationException {
-        User registrationUser = userSevrice.getUserByLogin(user.getLogin());
-
-        if(registrationUser == null) {
-            throw new ValidationException(Error.INT002002);
+    public void toValidateUserExist(User user) throws ValidationException {
+        if(user == null) {
+            throw new ValidationException(ErrorType.INT002002);
         }
     }
 
-    public void toValedUserloginExist(User user) throws ValidationException {
-        User registrationUser = userSevrice.getUserByLogin(user.getLogin());
+    public void toValidatePassword(String password, String userPassword) throws ValidationException {
+        if(!bCryptPasswordEncoder.matches(password, userPassword)) {
+            throw new ValidationException(ErrorType.INT002003);
+        }
+    }
+
+    public void toValidateUserloginExist(User user) throws ValidationException {
+        User registrationUser = userService.getUserByLogin(user.getLogin());
 
         if(registrationUser != null) {
-            throw new ValidationException(Error.INT002001);
+            throw new ValidationException(ErrorType.INT002001);
         }
     }
 

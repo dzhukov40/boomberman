@@ -1,15 +1,17 @@
-package ru.doneathome.boomberman.model;
+package ru.doneathome.boomberman.security.enums;
 
 import java.util.EnumSet;
 
 /**
- * роли пользователя, роли мы храним в базе, это варианты ролей пользователя
+ * У каждого пользователя есть набор ролей которые, определяют, 
+ * что можно, а что нельзя пользователю в системе
  */
 public enum RoleType {
 
-    // Администратор
+    // администратор
     ADMIN("1"),
-    // Обычный пользователь
+
+    // Пользователь
     USER("2");
 
 
@@ -32,5 +34,4 @@ public enum RoleType {
     public String getCode() {
         return code;
     }
-    
 }
