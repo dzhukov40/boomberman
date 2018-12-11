@@ -26,6 +26,7 @@
 // import * as sendToServer from './sendToServer';
 
 
+"use strict";
 
 const AuthorizationService = window.AuthorizationService;
 const HttpLocal = window.HttpLocal;

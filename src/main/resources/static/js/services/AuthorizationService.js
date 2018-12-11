@@ -2,6 +2,7 @@
  * Модуль для работы с юзером
  */
 (function () {
+    "use strict";
 
     var HttpLocal = window.HttpLocal;
     const TOKEN = window.TOKEN;

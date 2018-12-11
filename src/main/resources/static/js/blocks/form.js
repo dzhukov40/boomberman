@@ -3,6 +3,7 @@
  * @module Form
  */
 (function () {
+    "use strict";
 
     const Block = window.Block;
 

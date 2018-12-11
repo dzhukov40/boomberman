@@ -3,6 +3,8 @@
  * @module HttpBase
  */
 (function () {
+    "use strict";
+
     //const xhr = new XMLHttpRequest();
     var timeout = 5000;
 

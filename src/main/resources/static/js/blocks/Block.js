@@ -3,6 +3,7 @@
  * @module Block
  */
 (function () {
+    "use strict";
 
     class Block {
         constructor(element) {

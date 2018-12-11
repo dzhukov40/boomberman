@@ -3,6 +3,7 @@
  * @module HttpLocal
  */
 (function () {
+    "use strict";
 
     const TOKEN = {
         JWT: 'JWT_TOKEN',
