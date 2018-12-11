@@ -42,13 +42,18 @@
 
         static logIn(login, password, callback) {
             var body = {login, password};
+            let headers = new Map();
+            headers.set('Content-Type','application/json; charset=utf8');
 
-            HttpLocal.post(LOG_IN, body, checklogIn);
+            HttpLocal.post(LOG_IN, body, headers, checklogIn);
         }
 
         static registration(login, password, callback) {
             var body = {login, password};
-            HttpLocal.post(REGISTRATION, body, checkRegistration);
+            let headers = new Map();
+            headers.set('Content-Type','application/json; charset=utf8');
+
+            HttpLocal.post(REGISTRATION, body, headers, checkRegistration);
         }
 
         static logOut() {

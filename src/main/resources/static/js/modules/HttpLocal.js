@@ -10,7 +10,7 @@
 
     const TOKEN = window.TOKEN;
 
-    //TODO: надо перенести этот кусочек потом
+    // мы пиркрепляем токен
     const AUTHORIZATION_BEARER = "Bearer";
     function createAuthorizationTokenHeader() {
         var token = localStorage.getItem(TOKEN.JWT);
@@ -22,20 +22,13 @@
             super();
         }
 
-        static get(path, callback) {
-            let headers = new Map();
-            headers
-                .set(TOKEN.AUTH, createAuthorizationTokenHeader());
-
+        static get(path, headers, callback) {
+            headers.set(TOKEN.AUTH, createAuthorizationTokenHeader());
             super.get(urlBase + path, headers, callback);
         }
 
-        static post(path, body, callback) {
-            let headers = new Map();
-            headers
-                .set('Content-Type','application/json; charset=utf8')
-                .set(TOKEN.AUTH, createAuthorizationTokenHeader());
-
+        static post(path, body, headers, callback) {
+            headers.set(TOKEN.AUTH, createAuthorizationTokenHeader());
             super.post(urlBase + path, body, headers, callback)
         }
 

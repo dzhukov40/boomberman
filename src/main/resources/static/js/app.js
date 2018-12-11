@@ -38,7 +38,9 @@ function sayHello(){
 }
 
 function testGetRequest(){
-    HttpLocal.get('/echo',sendToConsole);
+    let headers = new Map();
+    headers.set('Content-Type','application/json; charset=utf8');
+    HttpLocal.get('/echo', headers, sendToConsole);
 }
 
 function testShowErrorMessage(){
@@ -46,7 +48,9 @@ function testShowErrorMessage(){
 }
 
 function testSendMessage(){
-    HttpLocal.get('/chat/get',sendToConsole);
+    let headers = new Map();
+    headers.set('Content-Type','application/json; charset=utf8');
+    HttpLocal.get('/chat/get', headers, sendToConsole);
 }
 
 
