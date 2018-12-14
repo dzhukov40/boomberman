@@ -30,12 +30,16 @@
 
 const AuthorizationService = window.AuthorizationService;
 const HttpLocal = window.HttpLocal;
+const GameCanvas = window.GameCanvas;
+const InputKeyboardUserData = window.InputKeyboardUserData;
 
 
 
 
 function sayHello(){
-    alert("sayHello()");
+    if(InputKeyboardUserData.isButtonPressed('SPACE')) {
+        alert("sayHello()");
+    }
 }
 
 function testGetRequest(){
@@ -52,6 +56,13 @@ function testSendMessage(){
     let headers = new Map();
     headers.set('Content-Type','application/json; charset=utf8');
     HttpLocal.get('/chat/get', headers, sendToConsole);
+}
+
+
+let gameCanvas = new GameCanvas();
+
+function GameCanvas_visible(){
+    gameCanvas.visible();
 }
 
 
