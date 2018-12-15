@@ -32,6 +32,7 @@ const AuthorizationService = window.AuthorizationService;
 const HttpLocal = window.HttpLocal;
 const GameCanvas = window.GameCanvas;
 const InputKeyboardUserData = window.InputKeyboardUserData;
+const ResourceLoader = window.ResourceLoader;
 
 
 
@@ -67,6 +68,18 @@ function GameCanvas_visible(){
 
 
 
+ResourceLoader.load([
+    '../img/game/Blocks/Blocks.png',
+    '../img/game/Bomb/Bomb.png',
+    '../img/game/Boomberman/Bman.png',
+    '../img/game/Creep/Creep.png',
+    '../img/game/Flame/Flame.png',
+    '../img/game/Powerups/Powerups.png'
+]);
+
+ResourceLoader.onReady(function () {
+   console.log("ресурсы загружены");
+});
 
 
 function logIn(){
