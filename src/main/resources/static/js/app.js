@@ -30,9 +30,11 @@
 
 const AuthorizationService = window.AuthorizationService;
 const HttpLocal = window.HttpLocal;
-const GameCanvas = window.GameCanvas;
+const LayerOfCanvas = window.LayerOfCanvas;
 const InputKeyboardUserData = window.InputKeyboardUserData;
 const ResourceLoader = window.ResourceLoader;
+const Sprite = window.Sprite;
+const UserEntity = window.UserEntity;
 
 
 
@@ -60,12 +62,10 @@ function testSendMessage(){
 }
 
 
-let gameCanvas = new GameCanvas();
+let layerOfCanvas = new LayerOfCanvas("mainLayer");
+let canvasElement = document.getElementById("canvas");
 
-function GameCanvas_visible(){
-    gameCanvas.visible();
-}
-
+layerOfCanvas.append(canvasElement);
 
 
 ResourceLoader.load([
@@ -77,9 +77,59 @@ ResourceLoader.load([
     '../img/game/Powerups/Powerups.png'
 ]);
 
+
 ResourceLoader.onReady(function () {
-   console.log("ресурсы загружены");
+    console.log("ресурсы загружены");
+    main();
 });
+
+function main() {
+
+
+    layerOfCanvas.getContext().fillRect(5, 5, 5, 5);
+
+    let sprite = new Sprite(ResourceLoader.get('../img/game/Boomberman/Bman.png'), [0, 0], [60, 120], 1, [0, 1, 2, 3, 4]);
+
+    let user = new UserEntity(
+        [10, 10],
+        sprite
+    );
+
+
+    layerOfCanvas.addEntity(user);
+
+
+    var then = Date.now();
+    var now;
+    var delta;
+
+    function animate() {
+        now = Date.now();
+        delta = now - then;
+
+        layerOfCanvas.clear();
+        layerOfCanvas.update(delta);
+        layerOfCanvas.render();
+
+
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 function logIn(){
