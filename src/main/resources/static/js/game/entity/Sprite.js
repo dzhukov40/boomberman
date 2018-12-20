@@ -5,7 +5,7 @@
  * img: изображение
  * pos: x и y координаты изображения на спрайт карте (*) Подразумевается, что все кадры анимации имеют один размер [size]
  * size: размеры (только одного кадра)
- * speed: скорость анимации в фрейм/с - 0 (по-умолчанию)
+ * speed: скорость анимации, указываем минимальную разницу в 'mc' при которой обновляем фрейм
  * frames: массив индексов фреймов в порядке анимации (*) как необходимо проходить по кадрам анимации
  * dir: в каком направлении двигаться по спрайт карте: 'horizontal (по-умолчанию) или 'vertical'
  * once: true, если необходимо отобразить только один цикл анимации, false — (по-умолчанию)
@@ -19,19 +19,22 @@
             this.img = img;
             this.pos = pos;
             this.size = size;
-            this.speed = speed;
+            this.speed = typeof speed === 'number' ? speed : 0;
             this.frames = frames;
-            this.dir = dir;
+            this.dir = dir || 'horizontal';
             this.once = once;
-            this._index = 0;
+            this.savedTime = 0;
         }
 
         /**
          * обновляем внутреннее время, для расчета, какой кадр показывать
-         * @param dt пройденное время
+         * @param time текущее время в милисекундах
          */
-        update(dt) {
-            this._index += this.speed*dt;
+        update(time) {
+            let dt = time - this.savedTime;
+            if (dt  > this.speed) {
+                this.savedTime += dt;
+            }
         }
 
         /**
@@ -43,7 +46,7 @@
 
             if(this.speed > 0) {
                 let max = this.frames.length;      // сколько картинок всего в анимации
-                let idx = Math.floor(this._index); // Math.floor() возвращает наибольшее целое число, которое меньше или равно данному числу
+                let idx = Math.floor(this.savedTime); // Math.floor() возвращает наибольшее целое число, которое меньше или равно данному числу
                 frame = this.frames[idx % max];    // определяем какой кадр спрайта надо показать из имеющихся
 
                 // если надо было один цикл анимации показать

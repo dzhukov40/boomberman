@@ -88,7 +88,7 @@ function main() {
 
     layerOfCanvas.getContext().fillRect(5, 5, 5, 5);
 
-    let sprite = new Sprite(ResourceLoader.get('../img/game/Boomberman/Bman.png'), [0, 0], [60, 120], 1, [0, 1, 2, 3, 4]);
+    let sprite = new Sprite(ResourceLoader.get('../img/game/Boomberman/Bman.png'), [0, 0], [64, 128], 100, [0, 1, 2, 3, 4, 5, 6, 7]);
 
     let user = new UserEntity(
         [10, 10],
@@ -108,7 +108,7 @@ function main() {
         delta = now - then;
 
         layerOfCanvas.clear();
-        layerOfCanvas.update(delta);
+        layerOfCanvas.update(Date.now());
         layerOfCanvas.render();
 
 

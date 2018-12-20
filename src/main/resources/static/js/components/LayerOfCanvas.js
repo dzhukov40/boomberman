@@ -31,9 +31,9 @@
             this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         }
 
-        update(dt) {
+        update(time) {
             entities.forEach(function (entity) {
-                entity.getSprite().update(dt);
+                entity.getSprite().update(time);
             });
         }
 
