@@ -7,20 +7,30 @@
     "use strict";
 
     class Entity {
-        constructor(position, sprite) {
+
+
+        constructor(position, sprites) {
             this.position = position;
-            this.sprite = sprite;
+            this.sprites = sprites;
+            this.showSprite = null;
+
         }
 
-        getSprite() {
-            return this.sprite;
+        getSprites() {
+            return this.sprites;
         }
 
         getPosition() {
             return this.position;
         }
 
+        getShowSprite() {
+            return this.showSprite;
+        }
 
+        setShowSprite(showSprite) {
+            this.showSprite = this.sprites.get(showSprite);
+        }
 
     }
 

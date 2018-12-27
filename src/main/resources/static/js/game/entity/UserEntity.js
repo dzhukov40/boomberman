@@ -9,8 +9,10 @@
     const Entity = window.Entity;
 
     class UserEntity extends Entity {
-        constructor(position, sprite) {
-            super(position, sprite);
+        constructor(position, sprites) {
+            super(position, sprites);
+
+            super.setShowSprite('front');
         }
 
 

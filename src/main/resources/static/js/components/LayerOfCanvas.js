@@ -33,17 +33,21 @@
 
         update(time) {
             entities.forEach(function (entity) {
-                entity.getSprite().update(time);
+                if (entity.getShowSprite() != null) {
+                    entity.getShowSprite().update(time);
+                }
             });
         }
 
         render() {
             let context = this.ctx;
             entities.forEach(function (entity) {
-                context.save();
-                context.translate(entity.getPosition()[0], entity.getPosition()[1]);
-                entity.getSprite().render(context);
-                context.restore();
+                if (entity.getShowSprite() != null) {
+                    context.save();
+                    context.translate(entity.getPosition()[0], entity.getPosition()[1]);
+                    entity.getShowSprite().render(context);
+                    context.restore();
+                }
             });
         }
 

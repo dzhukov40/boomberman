@@ -88,11 +88,18 @@ function main() {
 
     layerOfCanvas.getContext().fillRect(5, 5, 5, 5);
 
-    let sprite = new Sprite(ResourceLoader.get('../img/game/Boomberman/Bman.png'), [0, 0], [64, 128], 100, [0, 1, 2, 3, 4, 5, 6, 7]);
+    let backSprite = new Sprite(ResourceLoader.get('../img/game/Boomberman/Bman.png'), [0, 0], [64, 128], 100, [0, 1, 2, 3, 4, 5, 6, 7]);
+    let frontSprite = new Sprite(ResourceLoader.get('../img/game/Boomberman/Bman.png'), [0, 128], [64, 128], 100, [0, 1, 2, 3, 4, 5, 6, 7]);
+    let rightSprite = new Sprite(ResourceLoader.get('../img/game/Boomberman/Bman.png'), [0, 256], [64, 128], 100, [0, 1, 2, 3, 4, 5, 6, 7]);
+    let leftSprite = new Sprite(ResourceLoader.get('../img/game/Boomberman/Bman.png'), [0, 384], [64, 128], 100, [0, 1, 2, 3, 4, 5, 6, 7]);
 
     let user = new UserEntity(
         [10, 10],
-        sprite
+        new Map()
+            .set('back', backSprite)
+            .set('front', frontSprite)
+            .set('right', rightSprite)
+            .set('left', leftSprite)
     );
 
 
@@ -110,6 +117,19 @@ function main() {
         layerOfCanvas.clear();
         layerOfCanvas.update(Date.now());
         layerOfCanvas.render();
+
+
+
+        if(InputKeyboardUserData.isButtonPressed('LEFT')) {
+            user.setShowSprite('left');
+        } else if (InputKeyboardUserData.isButtonPressed('UP')) {
+            user.setShowSprite('back');
+        } else if (InputKeyboardUserData.isButtonPressed('RIGHT')) {
+            user.setShowSprite('right');
+        } else if (InputKeyboardUserData.isButtonPressed('DOWN')) {
+            user.setShowSprite('front');
+        }
+
 
 
 
