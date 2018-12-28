@@ -23,7 +23,9 @@
             this.frames = frames;
             this.dir = dir || 'horizontal';
             this.once = once;
+
             this.savedTime = 0;
+            this.imgSize = [size[0], size[1]]; // конечный размер показываемого изображения
         }
 
         /**
@@ -73,7 +75,20 @@
                 x, y,
                 this.size[0], this.size[1],
                 0, 0,
-                this.size[0], this.size[1]);
+                this.imgSize[0], this.imgSize[1]);
+        }
+
+        changeImgSize(coefficient) {
+            this.imgSize[0] = this.imgSize[0] * coefficient;
+            this.imgSize[1] = this.imgSize[1] * coefficient;
+        }
+
+        setImgSize(imgSize) {
+            this.imgSize = imgSize;
+        }
+
+        getImgSize() {
+            return this.imgSize;
         }
 
     }

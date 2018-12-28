@@ -93,6 +93,12 @@ function main() {
     let rightSprite = new Sprite(ResourceLoader.get('../img/game/Boomberman/Bman.png'), [0, 256], [64, 128], 100, [0, 1, 2, 3, 4, 5, 6, 7]);
     let leftSprite = new Sprite(ResourceLoader.get('../img/game/Boomberman/Bman.png'), [0, 384], [64, 128], 100, [0, 1, 2, 3, 4, 5, 6, 7]);
 
+    backSprite.changeImgSize(0.1);
+    frontSprite.changeImgSize(0.2);
+    rightSprite.changeImgSize(0.3);
+    leftSprite.changeImgSize(0.4);
+
+
     let user = new UserEntity(
         [10, 10],
         new Map()
