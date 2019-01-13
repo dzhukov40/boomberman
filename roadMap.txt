@@ -192,6 +192,21 @@
       - сохраняем проект ' gimp ' как ' *.xcf' (*) сохраняем в проекте
       - создаем картинку ' *.png ' File -> Export
     - ' https://gamedevelopment.tutsplus.com/articles/enjoy-these-totally-free-bomberman-inspired-sprites--gamedev-8541 '
+  - 'canvas' есть важный моментик, есть два места для задания ширины и высоты
+    - первое место это в 'css' задать -> ' width: 1500px; height: 500px; '
+    - второе место это при создании элемента 'canvas' ->  ' canvas.width = 1500; canvas.height = 500; '
+    - [!] можно подобрать dpi
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -8,12 +8,13 @@
     var entities = [];
 
     class LayerOfCanvas {
-        constructor(layerId) {
+        constructor(layerId, size) {
             this.canvas = document.createElement('canvas');
             //this.canvas.classList.add(GAME_CANVAS_CLASS);
             this.canvas.id = layerId;
             this.ctx = this.canvas.getContext('2d');
-            //this.ctx.scale(0.8,0.8);
+            this.canvas.width = size[0];
+            this.canvas.height = size[1];
         }
 
         append(parentElement) {

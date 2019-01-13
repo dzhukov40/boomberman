@@ -61,8 +61,8 @@ function testSendMessage(){
     HttpLocal.get('/chat/get', headers, sendToConsole);
 }
 
-
-let layerOfCanvas = new LayerOfCanvas("mainLayer");
+let canvasSize = [1500, 500];
+let layerOfCanvas = new LayerOfCanvas("mainLayer", canvasSize);
 let canvasElement = document.getElementById("canvas");
 
 layerOfCanvas.append(canvasElement);
@@ -97,11 +97,6 @@ function main() {
     let leftSprite = new Sprite(ResourceLoader.get('../img/game/Units/character_silver.png'), [0, 126], [42, 42], 100, [0, 1, 2, 3]);
 
 
-/*    backSprite.changeImgSize(0.9);
-    frontSprite.changeImgSize(0.8);
-    rightSprite.changeImgSize(0.7);
-    leftSprite.changeImgSize(0.6);*/
-
 
     let user = new UserEntity(
         [10, 10],
@@ -132,12 +127,19 @@ function main() {
 
         if(InputKeyboardUserData.isButtonPressed('LEFT')) {
             user.setShowSprite('left');
-        } else if (InputKeyboardUserData.isButtonPressed('UP')) {
+            user.position[0] = user.position[0] - 1;
+        }
+        if (InputKeyboardUserData.isButtonPressed('UP')) {
             user.setShowSprite('back');
-        } else if (InputKeyboardUserData.isButtonPressed('RIGHT')) {
+            user.position[1] = user.position[1] - 1;
+        }
+        if (InputKeyboardUserData.isButtonPressed('RIGHT')) {
             user.setShowSprite('right');
-        } else if (InputKeyboardUserData.isButtonPressed('DOWN')) {
+            user.position[0] = user.position[0] + 1;
+        }
+        if (InputKeyboardUserData.isButtonPressed('DOWN')) {
             user.setShowSprite('front');
+            user.position[1] = user.position[1] + 1;
         }
 
 
