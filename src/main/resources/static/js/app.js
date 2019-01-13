@@ -74,7 +74,10 @@ ResourceLoader.load([
     '../img/game/Boomberman/Bman.png',
     '../img/game/Creep/Creep.png',
     '../img/game/Flame/Flame.png',
-    '../img/game/Powerups/Powerups.png'
+    '../img/game/Powerups/Powerups.png',
+
+    '../img/game/Units/batman.png',
+    '../img/game/Units/character_silver.png'
 ]);
 
 
@@ -88,15 +91,16 @@ function main() {
 
     layerOfCanvas.getContext().fillRect(5, 5, 5, 5);
 
-    let backSprite = new Sprite(ResourceLoader.get('../img/game/Boomberman/Bman.png'), [0, 0], [64, 128], 100, [0, 1, 2, 3, 4, 5, 6, 7]);
-    let frontSprite = new Sprite(ResourceLoader.get('../img/game/Boomberman/Bman.png'), [0, 128], [64, 128], 100, [0, 1, 2, 3, 4, 5, 6, 7]);
-    let rightSprite = new Sprite(ResourceLoader.get('../img/game/Boomberman/Bman.png'), [0, 256], [64, 128], 100, [0, 1, 2, 3, 4, 5, 6, 7]);
-    let leftSprite = new Sprite(ResourceLoader.get('../img/game/Boomberman/Bman.png'), [0, 384], [64, 128], 100, [0, 1, 2, 3, 4, 5, 6, 7]);
+    let backSprite = new Sprite(ResourceLoader.get('../img/game/Units/character_silver.png'), [0, 0], [42, 42], 100, [0, 1, 2, 3]);
+    let rightSprite = new Sprite(ResourceLoader.get('../img/game/Units/character_silver.png'), [0, 42], [42, 42], 100, [0, 1, 2, 3]);
+    let frontSprite = new Sprite(ResourceLoader.get('../img/game/Units/character_silver.png'), [0, 84], [42, 42], 100, [0, 1, 2, 3]);
+    let leftSprite = new Sprite(ResourceLoader.get('../img/game/Units/character_silver.png'), [0, 126], [42, 42], 100, [0, 1, 2, 3]);
 
-    backSprite.changeImgSize(0.1);
-    frontSprite.changeImgSize(0.2);
-    rightSprite.changeImgSize(0.3);
-    leftSprite.changeImgSize(0.4);
+
+/*    backSprite.changeImgSize(0.9);
+    frontSprite.changeImgSize(0.8);
+    rightSprite.changeImgSize(0.7);
+    leftSprite.changeImgSize(0.6);*/
 
 
     let user = new UserEntity(

@@ -13,6 +13,7 @@
             //this.canvas.classList.add(GAME_CANVAS_CLASS);
             this.canvas.id = layerId;
             this.ctx = this.canvas.getContext('2d');
+            //this.ctx.scale(0.8,0.8);
         }
 
         append(parentElement) {
@@ -28,7 +29,10 @@
         }
 
         clear() {
+            this.ctx.save();
+            this.ctx.fillStyle = "#ffffff";
             this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+            this.ctx.restore();
         }
 
         update(time) {
