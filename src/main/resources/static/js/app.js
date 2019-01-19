@@ -30,11 +30,13 @@
 
 const AuthorizationService = window.AuthorizationService;
 const HttpLocal = window.HttpLocal;
-const LayerOfCanvas = window.LayerOfCanvas;
-const InputKeyboardUserData = window.InputKeyboardUserData;
 const ResourceLoader = window.ResourceLoader;
 const Sprite = window.Sprite;
+const LayerOfCanvas = window.LayerOfCanvas;
+const MapGenerator = window.MapGenerator;
+const InputKeyboardUserData = window.InputKeyboardUserData;
 const UserEntity = window.UserEntity;
+const MapEntity = window.MapEntity;
 
 
 
@@ -51,8 +53,30 @@ function testGetRequest(){
     HttpLocal.get('/echo', headers, sendToConsole);
 }
 
-function testShowErrorMessage(){
+function testShowErrorMessage() {
     console.log("пук");
+
+    let mapGenerator = new MapGenerator(null);
+
+
+    let jsonMap = [
+        {name: "GRASS", position: [0,0]},
+        {name: "GROUND", position: [32,0]},
+        {name: "GROUND", position: [64,0]},
+        {name: "GRASS", position: [96,0]},
+        {name: "WALL", position: [128,0]},
+    ];
+    let mapElements_2 = mapGenerator.convertJsonMapToMapElements(jsonMap);
+
+    let generateGameMap = mapGenerator.generate("gameMap", mapElements_2);
+
+    // TODO: порядок добавления определяет какой слой перекрывает какие другие слои
+    generateGameMap.append(canvasElement);
+    layerOfCanvas.append(canvasElement);
+
+
+    layersOfCanvas.push(generateGameMap);
+    layersOfCanvas.push(layerOfCanvas);
 }
 
 function testSendMessage(){
@@ -65,7 +89,13 @@ let canvasSize = [1500, 500];
 let layerOfCanvas = new LayerOfCanvas("mainLayer", canvasSize);
 let canvasElement = document.getElementById("canvas");
 
-layerOfCanvas.append(canvasElement);
+
+
+// все слои канваса
+let layersOfCanvas = [];
+
+
+
 
 
 ResourceLoader.load([
@@ -77,7 +107,9 @@ ResourceLoader.load([
     '../img/game/Powerups/Powerups.png',
 
     '../img/game/Units/batman.png',
-    '../img/game/Units/character_silver.png'
+    '../img/game/Units/character_silver.png',
+
+    '../img/game/MapBlocks/tileset.png'
 ]);
 
 
@@ -99,7 +131,7 @@ function main() {
 
 
     let user = new UserEntity(
-        [10, 10],
+        [50, 50],
         new Map()
             .set('back', backSprite)
             .set('front', frontSprite)
@@ -119,10 +151,14 @@ function main() {
         now = Date.now();
         delta = now - then;
 
-        layerOfCanvas.clear();
-        layerOfCanvas.update(Date.now());
-        layerOfCanvas.render();
-
+        // отрисовываем все слои канваса
+        layersOfCanvas.forEach(function (layerOfCanvas) {
+            layerOfCanvas.clear();
+        });
+        layersOfCanvas.forEach(function (layerOfCanvas) {
+            layerOfCanvas.update(Date.now());
+            layerOfCanvas.render();
+        });
 
 
         if(InputKeyboardUserData.isButtonPressed('LEFT')) {

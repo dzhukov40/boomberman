@@ -5,8 +5,6 @@
 (function () {
     "use strict";
 
-    var entities = [];
-
     class LayerOfCanvas {
         constructor(layerId, size) {
             this.canvas = document.createElement('canvas');
@@ -15,6 +13,9 @@
             this.ctx = this.canvas.getContext('2d');
             this.canvas.width = size[0];
             this.canvas.height = size[1];
+
+            this.entities = [];
+            this.subLaerOfCanvas = [];
         }
 
         append(parentElement) {
@@ -26,18 +27,17 @@
         }
 
         addEntity(entity) {
-            entities.push(entity);
+            this.entities.push(entity);
         }
 
         clear() {
             this.ctx.save();
-            this.ctx.fillStyle = "#ffffff";
-            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             this.ctx.restore();
         }
 
         update(time) {
-            entities.forEach(function (entity) {
+            this.entities.forEach(function (entity) {
                 if (entity.getShowSprite() != null) {
                     entity.getShowSprite().update(time);
                 }
@@ -46,7 +46,7 @@
 
         render() {
             let context = this.ctx;
-            entities.forEach(function (entity) {
+            this.entities.forEach(function (entity) {
                 if (entity.getShowSprite() != null) {
                     context.save();
                     context.translate(entity.getPosition()[0], entity.getPosition()[1]);

@@ -7,8 +7,6 @@
     "use strict";
 
     class Entity {
-
-
         constructor(position, sprites) {
             this.position = position;
             this.sprites = sprites;
