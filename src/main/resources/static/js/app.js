@@ -28,7 +28,6 @@
 
 "use strict";
 
-const AuthorizationService = window.AuthorizationService;
 const HttpLocal = window.HttpLocal;
 const ResourceLoader = window.ResourceLoader;
 const Sprite = window.Sprite;
@@ -37,8 +36,15 @@ const MapGenerator = window.MapGenerator;
 const InputKeyboardUserData = window.InputKeyboardUserData;
 const UserEntity = window.UserEntity;
 const MapEntity = window.MapEntity;
+const AuthorizationService = window.AuthorizationService;
+const WebSocketService = window.WebSocketService;
 
 
+
+// подключение к webSocket
+let webSocketConnectionUrl = "ws://localhost:3030";
+let webSocketService = new WebSocketService(webSocketConnectionUrl);
+console.log("попробовали присосаться к веб сокету " + webSocketConnectionUrl);
 
 
 function sayHello(){
@@ -58,13 +64,18 @@ function testShowErrorMessage() {
 
     let mapGenerator = new MapGenerator(null);
 
-
     let jsonMap = [
         {name: "GRASS", position: [0,0]},
         {name: "GROUND", position: [32,0]},
         {name: "GROUND", position: [64,0]},
         {name: "GRASS", position: [96,0]},
         {name: "WALL", position: [128,0]},
+
+        {name: "GRASS", position: [0,32]},
+        {name: "GROUND", position: [32,32]},
+        {name: "GROUND", position: [64,32]},
+        {name: "GRASS", position: [96,32]},
+        {name: "WALL", position: [128,32]},
     ];
     let mapElements_2 = mapGenerator.convertJsonMapToMapElements(jsonMap);
 
@@ -80,9 +91,11 @@ function testShowErrorMessage() {
 }
 
 function testSendMessage(){
-    let headers = new Map();
+/*    let headers = new Map();
     headers.set('Content-Type','application/json; charset=utf8');
-    HttpLocal.get('/chat/get', headers, sendToConsole);
+    HttpLocal.get('/chat/get', headers, sendToConsole);*/
+
+    webSocketService.sendMessage(JSON.stringify ("приветики"));
 }
 
 let canvasSize = [1500, 500];
