@@ -29,14 +29,23 @@
         pressedKeys[key] = status;
     }
 
+    /**
+     * событие: пользователь нажал кнопку
+     */
     document.addEventListener('keydown', function(e) {
         setKey(e, true);
     });
 
+    /**
+     * событие: пользователь отжал кнопку
+     */
     document.addEventListener('keyup', function(e) {
         setKey(e, false);
     });
 
+    /**
+     * событие: пользователь переключает фокус с текущего окна.
+     */
     window.addEventListener('blur', function() {
         pressedKeys = {};
     });

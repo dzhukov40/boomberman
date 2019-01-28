@@ -28,6 +28,7 @@
 
 "use strict";
 
+const GeneratorUUID = window.GeneratorUUID;
 const HttpLocal = window.HttpLocal;
 const ResourceLoader = window.ResourceLoader;
 const Sprite = window.Sprite;
@@ -38,13 +39,18 @@ const UserEntity = window.UserEntity;
 const MapEntity = window.MapEntity;
 const AuthorizationService = window.AuthorizationService;
 const WebSocketService = window.WebSocketService;
+const PlayerEventDto = window.PlayerEventDto;
 
 
 
 // подключение к webSocket
 let webSocketConnectionUrl = "ws://localhost:3030";
 let webSocketService = new WebSocketService(webSocketConnectionUrl);
+// webSocketService.setOnGetMessage();
 console.log("попробовали присосаться к веб сокету " + webSocketConnectionUrl);
+
+
+let userUUID = GeneratorUUID.create_UUID();
 
 
 function sayHello(){
@@ -151,9 +157,44 @@ function main() {
             .set('right', rightSprite)
             .set('left', leftSprite)
     );
+    user.setUUID(userUUID);
 
 
     layerOfCanvas.addEntity(user);
+
+
+    // добавим другого пользователя на канвас, если он появится
+    webSocketService.setOnGetMessage(function (message) {
+        let messageObject = JSON.parse(message.data);
+        console.log("сообщение от сервера:" + messageObject);
+
+        let newUser = layerOfCanvas.getEntity(messageObject.userUUID);
+
+        if (newUser === undefined) {
+            let user2 = new UserEntity(
+                [messageObject.position[0], messageObject.position[1]],
+                new Map()
+                    .set('back', backSprite)
+                    .set('front', frontSprite)
+                    .set('right', rightSprite)
+                    .set('left', leftSprite)
+            );
+            user2.setUUID(messageObject.userUUID);
+
+            layerOfCanvas.addEntity(user2);
+        } else {
+            newUser.position = [messageObject.position[0], messageObject.position[1]];
+        }
+
+
+    });
+
+
+
+
+
+
+
 
 
     var then = Date.now();
@@ -174,6 +215,8 @@ function main() {
         });
 
 
+        let oldPosition = [user.position[0], user.position[1]];
+
         if(InputKeyboardUserData.isButtonPressed('LEFT')) {
             user.setShowSprite('left');
             user.position[0] = user.position[0] - 1;
@@ -189,6 +232,12 @@ function main() {
         if (InputKeyboardUserData.isButtonPressed('DOWN')) {
             user.setShowSprite('front');
             user.position[1] = user.position[1] + 1;
+        }
+
+        // отправляем новую позицию игрока
+        if(oldPosition[0] != user.position[0] || oldPosition[1] != user.position[1]) {
+            let jsonMessage = JSON.stringify({userEvent: "newPosition", userUUID: userUUID, position: user.position});
+            webSocketService.sendMessage(jsonMessage);
         }
 
 

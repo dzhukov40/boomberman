@@ -30,17 +30,7 @@
         }
 
         setOnGetMessage(onGetMessage) {
-            //this.socket.onmessage = onGetMessage;
-
-            this.socket.onmessage = function (msg) {
-                try {
-                    var json = JSON.parse(message.data);
-                    console.log(json);
-                } catch (e) {
-                    console.log('This doesn\'t look like a valid JSON: ', message.data);
-                    return;
-                }
-            }
+            this.socket.onmessage = onGetMessage;
         }
 
 

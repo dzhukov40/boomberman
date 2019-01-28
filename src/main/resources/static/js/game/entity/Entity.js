@@ -6,12 +6,23 @@
 (function () {
     "use strict";
 
+    const GeneratorUUID = window.GeneratorUUID;
+
     class Entity {
         constructor(position, sprites) {
             this.position = position;
             this.sprites = sprites;
             this.showSprite = null;
 
+            this.uuid = GeneratorUUID.create_UUID();
+        }
+
+        setUUID(uuid) {
+            this.uuid = uuid;
+        }
+
+        getUUID() {
+            return this.uuid;
         }
 
         getSprites() {

@@ -38,8 +38,7 @@ const webSocketServer = require('websocket').server;
 const http = require('http');
 
 // list of currently connected clients (users)
-var clients = [];
-
+var clientsConnetions = [];
 
 
 var server = http.createServer(function(request, response) {
@@ -62,16 +61,19 @@ wsServer.on('request', function(request) {
 
     var connection = request.accept(null, request.origin);
     // we need to know client index to remove them on 'close' event
-    var index = clients.push(connection) - 1;
+    var index = clientsConnetions.push(connection) - 1;
 
     // user sent some message
     connection.on('message', function(message) {
         if (message.type === 'utf8') { // accept only text
             console.log((new Date()) + "getMessage: " + message.utf8Data);
 
+            // конвертируем полученное сообщение в json
+            // let messageObject = JSON.parse(message.utf8Data);
+
             // broadcast message to all connected clients
-            for (var i=0; i < clients.length; i++) {
-                clients[i].sendUTF(message);
+            for (var i=0; i < clientsConnetions.length; i++) {
+                clientsConnetions[i].sendUTF(message.utf8Data);
             }
         } else if (message.type === 'binary') {
             console.log('Received Binary Message of ' + message.binaryData.length + ' bytes');

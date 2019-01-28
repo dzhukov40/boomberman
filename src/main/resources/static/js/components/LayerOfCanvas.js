@@ -14,7 +14,7 @@
             this.canvas.width = size[0];
             this.canvas.height = size[1];
 
-            this.entities = [];
+            this.entities = new Map();
             this.subLaerOfCanvas = [];
         }
 
@@ -27,7 +27,17 @@
         }
 
         addEntity(entity) {
-            this.entities.push(entity);
+            // надо подумать над перезаписыванием
+            this.entities.set(entity.getUUID(), entity);
+        }
+
+        getEntity(entityUUID) {
+            this.entities.get(entityUUID);
+        }
+
+        deleteEntity(entityUUID) {
+            // надо подумать над перезаписыванием
+            this.entities.delete(entityUUID);
         }
 
         clear() {
