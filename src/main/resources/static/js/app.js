@@ -40,6 +40,7 @@ const MapEntity = window.MapEntity;
 const AuthorizationService = window.AuthorizationService;
 const WebSocketService = window.WebSocketService;
 const PlayerEventDto = window.PlayerEventDto;
+const PLAYER_EVENT = window.PLAYER_EVENT;
 
 
 
@@ -236,7 +237,7 @@ function main() {
 
         // отправляем новую позицию игрока
         if(oldPosition[0] != user.position[0] || oldPosition[1] != user.position[1]) {
-            let jsonMessage = JSON.stringify({userEvent: "newPosition", userUUID: userUUID, position: user.position});
+            let jsonMessage = JSON.stringify(new PlayerEventDto(PLAYER_EVENT.CHANGE_POSITION, user.position, userUUID));
             webSocketService.sendMessage(jsonMessage);
         }
 
