@@ -37,11 +37,14 @@ const webSocketsServerPort = 3030;
 const webSocketServer = require('websocket').server;
 const http = require('http');
 
-// list of currently connected clients (users)
-var clientsConnetions = [];
+/**
+ * тип состоит ис соединения и сообщений
+ * clients[0] = {connection: null, msgFromClient: [], frameCalculationMsg: [], userEntity, null}
+ */
+let clients = [];
 
 
-var server = http.createServer(function(request, response) {
+let server = http.createServer(function(request, response) {
     console.log((new Date()) + ' Received request for ' + request.url);
     response.writeHead(404);
     response.end();
@@ -51,7 +54,7 @@ server.listen(webSocketsServerPort, function() {
 });
 
 
-var wsServer = new webSocketServer({
+let wsServer = new webSocketServer({
     httpServer: server
 });
 
@@ -59,22 +62,20 @@ var wsServer = new webSocketServer({
 wsServer.on('request', function(request) {
     console.log((new Date()) + ' Connection from origin ' + request.origin + '.');
 
-    var connection = request.accept(null, request.origin);
-    // we need to know client index to remove them on 'close' event
-    var index = clientsConnetions.push(connection) - 1;
+    let connection = request.accept(null, request.origin);
+    let userEntity = { position:[0,0], pressedKeys: {} };
+    let client = {connection: connection, messageFromClient: [], frameCalculationMsg: [], userEntity: userEntity};
+    clients.push(client);
 
     // user sent some message
     connection.on('message', function(message) {
         if (message.type === 'utf8') { // accept only text
-            console.log((new Date()) + "getMessage: " + message.utf8Data);
+            // console.log((new Date()) + "getMessage: " + message.utf8Data);
 
-            // конвертируем полученное сообщение в json
-            // let messageObject = JSON.parse(message.utf8Data);
 
-            // broadcast message to all connected clients
-            for (var i=0; i < clientsConnetions.length; i++) {
-                clientsConnetions[i].sendUTF(message.utf8Data);
-            }
+            client.messageFromClient.push(JSON.parse(message.utf8Data));
+
+
         } else if (message.type === 'binary') {
             console.log('Received Binary Message of ' + message.binaryData.length + ' bytes');
         }
@@ -92,4 +93,52 @@ wsServer.on('request', function(request) {
 
 
 
+/**
+ * Game loop
+ */
+const minFrameTime = 1000;
+
+const {setKeyFromClient, isButtonPressed, changeUserPosition} = require("./InputKeyboardUserData");
+
+
+
+
+function gameLoopFunction() {
+
+    // делаем отсечку по всем полученным сообщениям, перемещая их из 'messageFromClient' в 'frameCalculationMsg'
+    clients.forEach(function (element) {
+        // перемещаем и удаляем
+        element.frameCalculationMsg = element.messageFromClient.splice(0, element.messageFromClient.length);
+
+        // проход по всем сообщениям это и будет набор событей который произошел на стороне пользователя!!!
+        element.frameCalculationMsg.forEach(function (msg) {
+            setKeyFromClient(msg, element.userEntity.pressedKeys);
+        });
+
+        // меняем координаты пользователя
+        changeUserPosition(element.userEntity, isButtonPressed);
+
+
+        console.log("element.frameCalculationMsg.length:" + element.frameCalculationMsg.length + "    element.userEntity.position:" + element.userEntity.position);
+    });
+
+
+
+
+
+
+
+
+
+
+    console.log("tort");
+
+}
+
+
+
+
+
+// начать повторы с интервалом minFrameTime
+let gameLoop = setInterval(gameLoopFunction, minFrameTime);
 

@@ -192,8 +192,24 @@ function main() {
 
 
 
+// прикрепляем отправку пользовательского ввода
+    new PlayerEventDto(PLAYER_EVENT.CHANGE_POSITION, user.position, userUUID);
 
 
+InputKeyboardUserData.addKeyDownEvent(function (event) {
+    let jsonMessage = JSON.stringify(new PlayerEventDto(PLAYER_EVENT.KEY_DOWN, event.keyCode, userUUID));
+    webSocketService.sendMessage(jsonMessage);
+});
+
+InputKeyboardUserData.addKeyUpEvent(function (event) {
+    let jsonMessage = JSON.stringify(new PlayerEventDto(PLAYER_EVENT.KEY_UP, event.keyCode, userUUID));
+    webSocketService.sendMessage(jsonMessage);
+});
+
+InputKeyboardUserData.addBlurEvent(function () {
+    let jsonMessage = JSON.stringify(new PlayerEventDto(PLAYER_EVENT.KEY_DOWN, null, userUUID));
+    webSocketService.sendMessage(jsonMessage);
+});
 
 
 
@@ -218,7 +234,7 @@ function main() {
 
         let oldPosition = [user.position[0], user.position[1]];
 
-        if(InputKeyboardUserData.isButtonPressed('LEFT')) {
+/*        if(InputKeyboardUserData.isButtonPressed('LEFT')) {
             user.setShowSprite('left');
             user.position[0] = user.position[0] - 1;
         }
@@ -239,7 +255,7 @@ function main() {
         if(oldPosition[0] != user.position[0] || oldPosition[1] != user.position[1]) {
             let jsonMessage = JSON.stringify(new PlayerEventDto(PLAYER_EVENT.CHANGE_POSITION, user.position, userUUID));
             webSocketService.sendMessage(jsonMessage);
-        }
+        }*/
 
 
 

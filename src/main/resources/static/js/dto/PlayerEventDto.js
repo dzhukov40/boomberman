@@ -9,8 +9,9 @@
 
     // Это енамчик различных событий, генерируемых игроком
     const PLAYER_EVENT = {
-        CHANGE_POSITION: 1,
-
+        KEY_DOWN: 1,
+        KEY_UP : 2,
+        BLUR : 3,
     };
 
     // playerEvent

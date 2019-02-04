@@ -61,6 +61,18 @@
             return pressedKeys[key.toUpperCase()];
         }
 
+        static addKeyDownEvent(event) {
+            document.addEventListener('keydown', event);
+        }
+
+        static addKeyUpEvent(event) {
+            document.addEventListener('keyup', event);
+        }
+
+        static addBlurEvent(event) {
+            document.addEventListener('blur', event);
+        }
+
     }
 
     window.InputKeyboardUserData = InputKeyboardUserData; // экспортируем класс
