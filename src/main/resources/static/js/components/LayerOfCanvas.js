@@ -32,7 +32,11 @@
         }
 
         getEntity(entityUUID) {
-            this.entities.get(entityUUID);
+            return this.entities.get(entityUUID);
+        }
+
+        hasEntity(entityUUID) {
+            return this.entities.has(entityUUID);
         }
 
         deleteEntity(entityUUID) {

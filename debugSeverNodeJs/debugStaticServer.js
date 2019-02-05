@@ -72,9 +72,9 @@ wsServer.on('request', function(request) {
         if (message.type === 'utf8') { // accept only text
             // console.log((new Date()) + "getMessage: " + message.utf8Data);
 
-
-            client.messageFromClient.push(JSON.parse(message.utf8Data));
-
+            let jsonGetMsg = JSON.parse(message.utf8Data)
+            client.messageFromClient.push(jsonGetMsg);
+            client.userEntity.userUUID = jsonGetMsg.userUUID;
 
         } else if (message.type === 'binary') {
             console.log('Received Binary Message of ' + message.binaryData.length + ' bytes');
@@ -96,7 +96,7 @@ wsServer.on('request', function(request) {
 /**
  * Game loop
  */
-const minFrameTime = 1000;
+const minFrameTime = 10;
 
 const {setKeyFromClient, isButtonPressed, changeUserPosition} = require("./InputKeyboardUserData");
 
@@ -116,11 +116,24 @@ function gameLoopFunction() {
         });
 
         // меняем координаты пользователя
-        changeUserPosition(element.userEntity, isButtonPressed);
+        let wasMakeChangePosition = changeUserPosition(element.userEntity, isButtonPressed);
+
+        // отсылаем всем полльзователям новые координаты, если они были изменены
+        if (wasMakeChangePosition) {
+            let sendMsg = {userUUID: element.userEntity.userUUID, position: element.userEntity.position};
+
+            // тут важно что мы должны всем зареганным пользователям разослать новую позицию одного пользователя
+            clients.forEach(function (elem) {
+                elem.connection.sendUTF(JSON.stringify(sendMsg));
+            });
+        }
 
 
         console.log("element.frameCalculationMsg.length:" + element.frameCalculationMsg.length + "    element.userEntity.position:" + element.userEntity.position);
     });
+
+
+
 
 
 

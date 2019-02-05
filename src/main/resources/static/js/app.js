@@ -169,9 +169,8 @@ function main() {
         let messageObject = JSON.parse(message.data);
         console.log("сообщение от сервера:" + messageObject);
 
-        let newUser = layerOfCanvas.getEntity(messageObject.userUUID);
 
-        if (newUser === undefined) {
+        if (!layerOfCanvas.hasEntity(messageObject.userUUID)) {
             let user2 = new UserEntity(
                 [messageObject.position[0], messageObject.position[1]],
                 new Map()
@@ -184,7 +183,8 @@ function main() {
 
             layerOfCanvas.addEntity(user2);
         } else {
-            newUser.position = [messageObject.position[0], messageObject.position[1]];
+            let user = layerOfCanvas.getEntity(messageObject.userUUID);
+            user.position = [messageObject.position[0], messageObject.position[1]];
         }
 
 

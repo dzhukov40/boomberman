@@ -31,7 +31,11 @@ function setKey(code, status, pressedKeys) {
     pressedKeys[key] = status;
 }
 
-
+/**
+ *
+ * @param msg
+ * @param pressedKeys
+ */
 exports.setKeyFromClient =  function setKeyFromClient(msg, pressedKeys) {
     switch (msg.playerEventID) {
         case PLAYER_EVENT.KEY_DOWN:
@@ -47,35 +51,47 @@ exports.setKeyFromClient =  function setKeyFromClient(msg, pressedKeys) {
 
 
 /**
- * метод говорит нажата ли кнопка
+ *
+ * @param key
+ * @param pressedKeys
+ * @return {*}
  */
 exports.isButtonPressed = function isButtonPressed(key, pressedKeys)
 {
     return pressedKeys[key.toUpperCase()];
 }
 
-
-
-
+/**
+ * todo: убрать этот метод из этого файла
+ * @param user
+ * @param isButtonPressed
+ */
 exports.changeUserPosition = function changeUserPosition(user, isButtonPressed)
 {
+    let wasMakeChangePosition = false;
+
     if (isButtonPressed('LEFT', user.pressedKeys)) {
         //user.setShowSprite('left');
         user.position[0] = user.position[0] - 1;
+        wasMakeChangePosition = true;
     }
     if (isButtonPressed('UP', user.pressedKeys)) {
         //user.setShowSprite('back');
         user.position[1] = user.position[1] - 1;
+        wasMakeChangePosition = true;
     }
     if (isButtonPressed('RIGHT', user.pressedKeys)) {
         //user.setShowSprite('right');
         user.position[0] = user.position[0] + 1;
+        wasMakeChangePosition = true;
     }
     if (isButtonPressed('DOWN', user.pressedKeys)) {
         //user.setShowSprite('front');
         user.position[1] = user.position[1] + 1;
+        wasMakeChangePosition = true;
     }
 
+    return wasMakeChangePosition;
 }
 
 
