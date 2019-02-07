@@ -36,10 +36,11 @@ const webSocketsServerPort = 3030;
 
 const webSocketServer = require('websocket').server;
 const http = require('http');
+const Client = require('./Entity/Client');
+const UserEntity = require('./Entity/UserEntity');
 
 /**
- * тип состоит ис соединения и сообщений
- * clients[0] = {connection: null, msgFromClient: [], frameCalculationMsg: [], userEntity, null}
+ * Это массив обьектов './Entity/Client'
  */
 let clients = [];
 
@@ -63,8 +64,8 @@ wsServer.on('request', function(request) {
     console.log((new Date()) + ' Connection from origin ' + request.origin + '.');
 
     let connection = request.accept(null, request.origin);
-    let userEntity = { position:[0,0], pressedKeys: {} };
-    let client = {connection: connection, messageFromClient: [], frameCalculationMsg: [], userEntity: userEntity};
+    let client = new Client(connection);
+    client.userEntity = new UserEntity(" "); // пользователь с пустым гуидом
     clients.push(client);
 
     // user sent some message
@@ -72,7 +73,7 @@ wsServer.on('request', function(request) {
         if (message.type === 'utf8') { // accept only text
             // console.log((new Date()) + "getMessage: " + message.utf8Data);
 
-            let jsonGetMsg = JSON.parse(message.utf8Data)
+            let jsonGetMsg = JSON.parse(message.utf8Data);
             client.messageFromClient.push(jsonGetMsg);
             client.userEntity.userUUID = jsonGetMsg.userUUID;
 
@@ -126,10 +127,10 @@ function gameLoopFunction() {
             clients.forEach(function (elem) {
                 elem.connection.sendUTF(JSON.stringify(sendMsg));
             });
+
+            console.log("element.frameCalculationMsg.length:" + element.frameCalculationMsg.length + "    element.userEntity.position:" + element.userEntity.position);
         }
 
-
-        console.log("element.frameCalculationMsg.length:" + element.frameCalculationMsg.length + "    element.userEntity.position:" + element.userEntity.position);
     });
 
 
