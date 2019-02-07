@@ -7,20 +7,29 @@
     - установка Express - [ npm install express ]
   - (*) мы начали использовать webSocket
     - установить Websocket - [ npm install websocket ]
+  - (*) добавили пакет для работы м пропертями properties-reader
+    - установить properties-reader [ npm install properties-reader --save ]
  */
 
 "use strict";
 
-const hostname = '127.0.0.1';
-const port = 3000;
-const staticPath = 'src/main/resources/static/';
+/**
+ * Http server
+ */
+const PropertiesReader = require('properties-reader');
+const properties = new PropertiesReader(__dirname + '/resources/server.properties');
+
+const hostname = properties.get('httpServer.app.host');
+const port = properties.get('httpServer.app.port');
+const staticPath = properties.get('httpServer.static.content.path');
+
 
 // берём Express - это фреймворк, делающий создание большинства сайтов очень простым.
 const express = require('express'); // подключаем модуль
 const app = express();              // создаём Express-приложение
 
 // Всё, что вы сложите в папку /public, может быть запрошено из браузера и будет отображено.
-app.use(express.static('src/main/resources/static/'));
+app.use(express.static(staticPath));
 
 // запускаем сервер на порту 8080
 app.listen(port);
