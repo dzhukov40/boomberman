@@ -207,7 +207,7 @@ InputKeyboardUserData.addKeyUpEvent(function (event) {
 });
 
 InputKeyboardUserData.addBlurEvent(function () {
-    let jsonMessage = JSON.stringify(new PlayerEventDto(PLAYER_EVENT.KEY_DOWN, null, userUUID));
+    let jsonMessage = JSON.stringify(new PlayerEventDto(PLAYER_EVENT.BLUR, null, userUUID));
     webSocketService.sendMessage(jsonMessage);
 });
 

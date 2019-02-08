@@ -70,7 +70,7 @@
         }
 
         static addBlurEvent(event) {
-            document.addEventListener('blur', event);
+            window.addEventListener('blur', event);
         }
 
     }

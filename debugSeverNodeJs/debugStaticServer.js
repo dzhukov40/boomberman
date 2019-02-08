@@ -41,7 +41,7 @@ console.log(`All static content from: ./${staticPath}`);
 /**
  * WebSocket server
  */
-const webSocketsServerPort = 3030;
+const webSocketsServerPort = properties.get('wsServer.web.socket.server.Port');
 
 const webSocketServer = require('websocket').server;
 const http = require('http');
@@ -74,13 +74,13 @@ wsServer.on('request', function(request) {
 
     let connection = request.accept(null, request.origin);
     let client = new Client(connection);
-    client.userEntity = new UserEntity(" "); // пользователь с пустым гуидом
+    client.userEntity = new UserEntity("EMPTY_GUID"); // пользователь с пустым гуидом
     clients.push(client);
 
     // user sent some message
     connection.on('message', function(message) {
         if (message.type === 'utf8') { // accept only text
-            // console.log((new Date()) + "getMessage: " + message.utf8Data);
+            console.log((new Date()) + "getMessage: " + message.utf8Data);
 
             let jsonGetMsg = JSON.parse(message.utf8Data);
             client.messageFromClient.push(jsonGetMsg);
@@ -106,7 +106,7 @@ wsServer.on('request', function(request) {
 /**
  * Game loop
  */
-const minFrameTime = 10;
+const minFrameTime = properties.get('game.loop.min.time');
 
 const {setKeyFromClient, isButtonPressed, changeUserPosition} = require("./InputKeyboardUserData");
 
@@ -154,7 +154,7 @@ function gameLoopFunction() {
 
 
 
-    console.log("tort");
+    //console.log("tort");
 
 }
 

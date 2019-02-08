@@ -10,25 +10,47 @@ const PLAYER_EVENT = {
     BLUR : 3,
 };
 
+const PLAYER_BUTTON = {
+    SPACE: {code: 32, key: 'SPACE'},
+    LEFT: {code: 37, key: 'LEFT'},
+    UP: {code: 38, key: 'UP'},
+    RIGHT: {code: 39, key: 'RIGHT'},
+    DOWN: {code: 40, key: 'DOWN'},
+}
+
+
 function setKey(code, status, pressedKeys) {
     let key;
 
-    switch (code) {
-        case 32:
-            key = 'SPACE'; break;
-        case 37:
-            key = 'LEFT'; break;
-        case 38:
-            key = 'UP'; break;
-        case 39:
-            key = 'RIGHT'; break;
-        case 40:
-            key = 'DOWN'; break;
-        default:
-            key = String.fromCharCode(code);
+    for (let property in PLAYER_BUTTON) {
+        if (code === PLAYER_BUTTON[property].code) {
+            key = PLAYER_BUTTON[property].key;
+            break;
+        }
     }
 
+    // нужны ли нам не отслеживаемые кнопки?
+    if (key === undefined) {
+        key = String.fromCharCode(code);
+    }
+
+    removeSenselessVersions(pressedKeys);
+
     pressedKeys[key] = status;
+}
+
+function removeSenselessVersions(pressedKeys) {
+
+    if(pressedKeys[PLAYER_BUTTON.RIGHT.key] === true && pressedKeys[PLAYER_BUTTON.LEFT.key]) {
+        pressedKeys[PLAYER_BUTTON.RIGHT.key] = false;
+        pressedKeys[PLAYER_BUTTON.LEFT.key] = false;
+    }
+
+    if(pressedKeys[PLAYER_BUTTON.UP.key] === true && pressedKeys[PLAYER_BUTTON.DOWN.key]) {
+        pressedKeys[PLAYER_BUTTON.UP.key] = false;
+        pressedKeys[PLAYER_BUTTON.DOWN.key] = false;
+    }
+
 }
 
 /**
@@ -45,7 +67,9 @@ exports.setKeyFromClient =  function setKeyFromClient(msg, pressedKeys) {
             setKey(msg.playerEventData, false, pressedKeys);
             break;
         case PLAYER_EVENT.BLUR:
-            pressedKeys = {};
+            for (let property in pressedKeys) {
+                delete pressedKeys[property];
+            }
     }
 }
 
@@ -68,32 +92,33 @@ exports.isButtonPressed = function isButtonPressed(key, pressedKeys)
  */
 exports.changeUserPosition = function changeUserPosition(user, isButtonPressed)
 {
-    let wasMakeChangePosition = false;
+    let userPosition = [user.position[0], user.position[1]];
 
     if (user != null) {
-        if (isButtonPressed('LEFT', user.pressedKeys)) {
+        if (isButtonPressed(PLAYER_BUTTON.LEFT.key, user.pressedKeys)) {
             //user.setShowSprite('left');
             user.position[0] = user.position[0] - 1;
-            wasMakeChangePosition = true;
         }
-        if (isButtonPressed('UP', user.pressedKeys)) {
+        if (isButtonPressed(PLAYER_BUTTON.UP.key, user.pressedKeys)) {
             //user.setShowSprite('back');
             user.position[1] = user.position[1] - 1;
-            wasMakeChangePosition = true;
         }
-        if (isButtonPressed('RIGHT', user.pressedKeys)) {
+        if (isButtonPressed(PLAYER_BUTTON.RIGHT.key, user.pressedKeys)) {
             //user.setShowSprite('right');
             user.position[0] = user.position[0] + 1;
-            wasMakeChangePosition = true;
         }
-        if (isButtonPressed('DOWN', user.pressedKeys)) {
+        if (isButtonPressed(PLAYER_BUTTON.DOWN.key, user.pressedKeys)) {
             //user.setShowSprite('front');
             user.position[1] = user.position[1] + 1;
-            wasMakeChangePosition = true;
         }
     }
 
-    return wasMakeChangePosition;
+    if (userPosition[0] === user.position[0] && userPosition[1] === user.position[1]) {
+        return false;
+    } else {
+        return true
+    }
+
 }
 
 
