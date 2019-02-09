@@ -74,7 +74,7 @@ wsServer.on('request', function(request) {
 
     let connection = request.accept(null, request.origin);
     let client = new Client(connection);
-    client.userEntity = new UserEntity("EMPTY_GUID"); // пользователь с пустым гуидом
+    client.userEntity = new UserEntity('EMPTY_GUID'); // пользователь с пустым гуидом
     clients.push(client);
 
     // user sent some message
@@ -93,7 +93,7 @@ wsServer.on('request', function(request) {
 
     // user disconnected
     connection.on('close', function(connection) {
-        console.log((new Date()) + "closeConnection" + connection);
+        console.log((new Date()) + 'closeConnection' + connection);
     });
 
 
@@ -108,8 +108,8 @@ wsServer.on('request', function(request) {
  */
 const minFrameTime = properties.get('game.loop.min.time');
 
-const {setKeyFromClient, isButtonPressed, changeUserPosition} = require("./InputKeyboardUserData");
-
+const {setKeyFromClient, isButtonPressed, changeUserPosition} = require('./InputKeyboardUserData');
+const UserDto = require('./frontAPI/UserDto');
 
 
 
@@ -129,9 +129,10 @@ function gameLoopFunction() {
         let wasMakeChangePosition = changeUserPosition(element.userEntity, isButtonPressed);
 
         // отсылаем всем полльзователям новые координаты, если они были изменены
-        //TODO: описать как класс отсылаемый обьект
         if (wasMakeChangePosition) {
-            let sendMsg = {userUUID: element.userEntity.userUUID, position: element.userEntity.position, showSprite: element.userEntity.showSprite};
+            let sendMsg = new UserDto(element.userEntity.userUUID);
+            sendMsg.position = element.userEntity.position;
+            sendMsg.showSprite = element.userEntity.showSprite;
 
             // тут важно что мы должны всем зареганным пользователям разослать новую позицию одного пользователя
             clients.forEach(function (elem) {

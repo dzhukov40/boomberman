@@ -170,23 +170,23 @@ function main() {
         console.log("сообщение от сервера:" + messageObject);
 
 
-        if (!layerOfCanvas.hasEntity(messageObject.userUUID)) {
+        if (!layerOfCanvas.hasEntity(messageObject._UUID)) {
             let user2 = new UserEntity(
-                [messageObject.position[0], messageObject.position[1]],
+                [messageObject._position[0], messageObject._position[1]],
                 new Map()
                     .set('back', backSprite)
                     .set('front', frontSprite)
                     .set('right', rightSprite)
                     .set('left', leftSprite)
             );
-            user2.setUUID(messageObject.userUUID);
-            user2.setShowSprite(messageObject.showSprite);
+            user2.setUUID(messageObject._UUID);
+            user2.setShowSprite(messageObject._showSprite);
 
             layerOfCanvas.addEntity(user2);
         } else {
-            let user = layerOfCanvas.getEntity(messageObject.userUUID);
-            user.position = [messageObject.position[0], messageObject.position[1]];
-            user.setShowSprite(messageObject.showSprite);
+            let user = layerOfCanvas.getEntity(messageObject._UUID);
+            user.position = [messageObject._position[0], messageObject._position[1]];
+            user.setShowSprite(messageObject._showSprite);
         }
 
 
