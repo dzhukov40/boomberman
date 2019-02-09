@@ -180,11 +180,13 @@ function main() {
                     .set('left', leftSprite)
             );
             user2.setUUID(messageObject.userUUID);
+            user2.setShowSprite(messageObject.showSprite);
 
             layerOfCanvas.addEntity(user2);
         } else {
             let user = layerOfCanvas.getEntity(messageObject.userUUID);
             user.position = [messageObject.position[0], messageObject.position[1]];
+            user.setShowSprite(messageObject.showSprite);
         }
 
 
@@ -230,34 +232,6 @@ InputKeyboardUserData.addBlurEvent(function () {
             layerOfCanvas.update(Date.now());
             layerOfCanvas.render();
         });
-
-
-        let oldPosition = [user.position[0], user.position[1]];
-
-/*        if(InputKeyboardUserData.isButtonPressed('LEFT')) {
-            user.setShowSprite('left');
-            user.position[0] = user.position[0] - 1;
-        }
-        if (InputKeyboardUserData.isButtonPressed('UP')) {
-            user.setShowSprite('back');
-            user.position[1] = user.position[1] - 1;
-        }
-        if (InputKeyboardUserData.isButtonPressed('RIGHT')) {
-            user.setShowSprite('right');
-            user.position[0] = user.position[0] + 1;
-        }
-        if (InputKeyboardUserData.isButtonPressed('DOWN')) {
-            user.setShowSprite('front');
-            user.position[1] = user.position[1] + 1;
-        }
-
-        // отправляем новую позицию игрока
-        if(oldPosition[0] != user.position[0] || oldPosition[1] != user.position[1]) {
-            let jsonMessage = JSON.stringify(new PlayerEventDto(PLAYER_EVENT.CHANGE_POSITION, user.position, userUUID));
-            webSocketService.sendMessage(jsonMessage);
-        }*/
-
-
 
 
         requestAnimationFrame(animate);

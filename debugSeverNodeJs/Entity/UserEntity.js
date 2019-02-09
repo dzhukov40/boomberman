@@ -8,6 +8,7 @@ class UserEntity extends Entity {
     constructor(userUUID) {
         super(userUUID);
         this._pressedKeys = {};
+        this._showSprite = null;
     }
 
     get pressedKeys() {
@@ -16,6 +17,14 @@ class UserEntity extends Entity {
 
     set pressedKeys(value) {
         this._pressedKeys = value;
+    }
+
+    get showSprite() {
+        return this._showSprite;
+    }
+
+    set showSprite(value) {
+        this._showSprite = value;
     }
 }
 

@@ -129,8 +129,9 @@ function gameLoopFunction() {
         let wasMakeChangePosition = changeUserPosition(element.userEntity, isButtonPressed);
 
         // отсылаем всем полльзователям новые координаты, если они были изменены
+        //TODO: описать как класс отсылаемый обьект
         if (wasMakeChangePosition) {
-            let sendMsg = {userUUID: element.userEntity.userUUID, position: element.userEntity.position};
+            let sendMsg = {userUUID: element.userEntity.userUUID, position: element.userEntity.position, showSprite: element.userEntity.showSprite};
 
             // тут важно что мы должны всем зареганным пользователям разослать новую позицию одного пользователя
             clients.forEach(function (elem) {
@@ -142,25 +143,11 @@ function gameLoopFunction() {
 
     });
 
-
-
-
-
-
-
-
-
-
-
-
-
-    //console.log("tort");
-
 }
 
 
 
-
+let startGameTaime = Date.now();
 
 // начать повторы с интервалом minFrameTime
 let gameLoop = setInterval(gameLoopFunction, minFrameTime);

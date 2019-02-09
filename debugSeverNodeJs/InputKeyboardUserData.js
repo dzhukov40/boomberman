@@ -18,6 +18,13 @@ const PLAYER_BUTTON = {
     DOWN: {code: 40, key: 'DOWN'},
 }
 
+const PLAYER_SPRITE = {
+    LEFT: 'left',
+    RIGHT: 'right',
+    FRONT: 'front',
+    BACK: 'back',
+}
+
 
 function setKey(code, status, pressedKeys) {
     let key;
@@ -96,19 +103,19 @@ exports.changeUserPosition = function changeUserPosition(user, isButtonPressed)
 
     if (user != null) {
         if (isButtonPressed(PLAYER_BUTTON.LEFT.key, user.pressedKeys)) {
-            //user.setShowSprite('left');
+            user.showSprite = PLAYER_SPRITE.LEFT;
             user.position[0] = user.position[0] - 1;
         }
         if (isButtonPressed(PLAYER_BUTTON.UP.key, user.pressedKeys)) {
-            //user.setShowSprite('back');
+            user.showSprite = PLAYER_SPRITE.BACK;
             user.position[1] = user.position[1] - 1;
         }
         if (isButtonPressed(PLAYER_BUTTON.RIGHT.key, user.pressedKeys)) {
-            //user.setShowSprite('right');
+            user.showSprite = PLAYER_SPRITE.RIGHT;
             user.position[0] = user.position[0] + 1;
         }
         if (isButtonPressed(PLAYER_BUTTON.DOWN.key, user.pressedKeys)) {
-            //user.setShowSprite('front');
+            user.showSprite = PLAYER_SPRITE.FRONT;
             user.position[1] = user.position[1] + 1;
         }
     }
