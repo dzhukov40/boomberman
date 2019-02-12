@@ -28,6 +28,7 @@
 
 "use strict";
 
+//TODO: добавить webPack и переписать через import/export
 const GeneratorUUID = window.GeneratorUUID;
 const HttpLocal = window.HttpLocal;
 const ResourceLoader = window.ResourceLoader;

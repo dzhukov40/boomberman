@@ -16,6 +16,7 @@
 /**
  * Http server
  */
+    //TODO: надо переписать все на ES6 (babel, webPack, обновить версию node)
 const PropertiesReader = require('properties-reader');
 const properties = new PropertiesReader(__dirname + '/resources/server.properties');
 
