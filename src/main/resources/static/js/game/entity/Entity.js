@@ -3,12 +3,13 @@
  *
  * @module Entity
  */
-(function () {
+// (function () {
     "use strict";
 
-    const GeneratorUUID = window.GeneratorUUID;
+  //  const GeneratorUUID = window.GeneratorUUID;
+import { GeneratorUUID } from '../../utility/GeneratorUUID.js';
 
-    class Entity {
+export default class Entity {
         constructor(position, sprites) {
             this.position = position;
             this.sprites = sprites;
@@ -43,6 +44,6 @@
 
     }
 
-    window.Entity = Entity; // экспортируем класс
+//    window.Entity = Entity; // экспортируем класс
 
-})();
+//})();

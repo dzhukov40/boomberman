@@ -2,20 +2,23 @@
  *
  * @module PlayerEventDto
  */
-(function () {
+// (function () {
     "use strict";
 
-    const GeneratorUUID = window.GeneratorUUID;
+// const GeneratorUUID = window.GeneratorUUID;
+import { GeneratorUUID } from '../utility/GeneratorUUID.js';
 
     // Это енамчик различных событий, генерируемых игроком
-    const PLAYER_EVENT = {
+export const PLAYER_EVENT = {
         KEY_DOWN: 1,
         KEY_UP : 2,
         BLUR : 3,
     };
 
+
     // playerEvent
-    class PlayerEventDto {
+//module.exports.PlayerEventDto =
+export class PlayerEventDto {
         constructor(playerEventID, playerEventData, userUUID) {
             this.playerEventID = playerEventID;
             this.playerEventData = playerEventData;
@@ -28,7 +31,14 @@
     }
 
 
-    window.PlayerEventDto = PlayerEventDto; // экспортируем класс
-    window.PLAYER_EVENT = PLAYER_EVENT; // экспортируем енамчик (*) можно вынести в ротдельный класс
+/*module.exports = {
+    t : PLAYER_EVENT,
+    PlayerEventDto : PlayerEventDto
+}*/
 
-})();
+
+
+//    window.PlayerEventDto = PlayerEventDto; // экспортируем класс
+//     window.PLAYER_EVENT = PLAYER_EVENT; // экспортируем енамчик (*) можно вынести в ротдельный класс
+
+//})();

@@ -11,10 +11,10 @@
  * once: true, если необходимо отобразить только один цикл анимации, false — (по-умолчанию)
  * @module Sprite
  */
-(function () {
+//(function () {
     "use strict";
 
-    class Sprite {
+export class Sprite {
         constructor(img, pos, size, speed, frames, dir, once) {
             this.img = img;
             this.pos = pos;
@@ -93,6 +93,6 @@
 
     }
 
-    window.Sprite = Sprite; // экспортируем класс
+//     window.Sprite = Sprite; // экспортируем класс
 
-})();
+// })();

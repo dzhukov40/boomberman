@@ -2,10 +2,10 @@
  *
  * @module LayerOfCanvas
  */
-(function () {
+// (function () {
     "use strict";
 
-    class LayerOfCanvas {
+export class LayerOfCanvas {
         constructor(layerId, size) {
             this.canvas = document.createElement('canvas');
             //this.canvas.classList.add(GAME_CANVAS_CLASS);
@@ -75,6 +75,6 @@
 
 
 
-    window.LayerOfCanvas = LayerOfCanvas; // экспортируем класс
+//     window.LayerOfCanvas = LayerOfCanvas; // экспортируем класс
 
-})();
+// })();

@@ -3,23 +3,21 @@
  *
  * @module UserEntity
  */
-(function () {
+// (function () {
     "use strict";
 
-    const Entity = window.Entity;
+//  const Entity = window.Entity;
+import Entity from './Entity.js';
 
-    class UserEntity extends Entity {
+export class UserEntity extends Entity {
         constructor(position, sprites) {
             super(position, sprites);
 
             super.setShowSprite('front');
         }
 
-
-
-
     }
 
-    window.UserEntity = UserEntity; // экспортируем класс
+//     window.UserEntity = UserEntity; // экспортируем класс
 
-})();
+// })();

@@ -1,16 +1,16 @@
 /**
  * Модуль для работы с юзером
  */
-(function () {
+// (function () {
     "use strict";
 
-    var HttpLocal = window.HttpLocal;
+    let HttpLocal = window.HttpLocal;
 
     const CHAT_SERVICE_PATH = '/chat';
     const SEND = CHAT_SERVICE_PATH + '/send';
 
 
-    class ChatService {
+export class ChatService {
         constructor() {
         }
 
@@ -24,6 +24,6 @@
 
     }
 
-    window.ChatService = ChatService; // экспортируем класс
+//   window.ChatService = ChatService; // экспортируем класс
 
-})();
+// })();

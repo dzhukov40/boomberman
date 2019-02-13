@@ -55,12 +55,12 @@ const UserEntity = require('./Entity/UserEntity');
 let clients = [];
 
 
-let server = http.createServer(function(request, response) {
+let server = http.createServer((request, response) => {
     console.log((new Date()) + ' Received request for ' + request.url);
     response.writeHead(404);
     response.end();
 });
-server.listen(webSocketsServerPort, function() {
+server.listen(webSocketsServerPort, () => {
     console.log((new Date()) + "Server is listening on port " + webSocketsServerPort);
 });
 
@@ -70,7 +70,7 @@ let wsServer = new webSocketServer({
 });
 
 
-wsServer.on('request', function(request) {
+wsServer.on('request', (request) => {
     console.log((new Date()) + ' Connection from origin ' + request.origin + '.');
 
     let connection = request.accept(null, request.origin);
@@ -79,7 +79,7 @@ wsServer.on('request', function(request) {
     clients.push(client);
 
     // user sent some message
-    connection.on('message', function(message) {
+    connection.on('message', (message) => {
         if (message.type === 'utf8') { // accept only text
             console.log((new Date()) + "getMessage: " + message.utf8Data);
 
@@ -93,7 +93,7 @@ wsServer.on('request', function(request) {
     });
 
     // user disconnected
-    connection.on('close', function(connection) {
+    connection.on('close', (connection) => {
         console.log((new Date()) + 'closeConnection' + connection);
     });
 
@@ -117,12 +117,12 @@ const UserDto = require('./frontAPI/UserDto');
 function gameLoopFunction() {
 
     // делаем отсечку по всем полученным сообщениям, перемещая их из 'messageFromClient' в 'frameCalculationMsg'
-    clients.forEach(function (element) {
+    clients.forEach((element) => {
         // перемещаем и удаляем
         element.frameCalculationMsg = element.messageFromClient.splice(0, element.messageFromClient.length);
 
         // проход по всем сообщениям это и будет набор событей который произошел на стороне пользователя!!!
-        element.frameCalculationMsg.forEach(function (msg) {
+        element.frameCalculationMsg.forEach((msg) => {
             setKeyFromClient(msg, element.userEntity.pressedKeys);
         });
 
@@ -136,9 +136,7 @@ function gameLoopFunction() {
             sendMsg.showSprite = element.userEntity.showSprite;
 
             // тут важно что мы должны всем зареганным пользователям разослать новую позицию одного пользователя
-            clients.forEach(function (elem) {
-                elem.connection.sendUTF(JSON.stringify(sendMsg));
-            });
+            clients.forEach((elem) => { elem.connection.sendUTF(JSON.stringify(sendMsg)); });
 
             console.log("element.frameCalculationMsg.length:" + element.frameCalculationMsg.length + "    element.userEntity.position:" + element.userEntity.position);
         }

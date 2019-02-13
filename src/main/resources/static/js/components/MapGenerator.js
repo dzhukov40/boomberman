@@ -2,13 +2,22 @@
  * как мы представим нашу карту?
  * @module MapGenerator
  */
-(function () {
+// (function () {
     "use strict";
 
-    const LayerOfCanvas = window.LayerOfCanvas;
-    const ResourceLoader = window.ResourceLoader;
-    const Sprite = window.Sprite;
-    const MapEntity = window.MapEntity;
+    import { LayerOfCanvas } from '../components/LayerOfCanvas.js';
+    // const LayerOfCanvas = window.LayerOfCanvas;
+
+    import { ResourceLoader } from '../components/ResourceLoader.js';
+    //const ResourceLoader = window.ResourceLoader;
+
+    import { Sprite } from '../game/entity/Sprite.js';
+    // const Sprite = window.Sprite;
+
+    import { MapEntity } from '../game/entity/MapEntity.js';
+    //const MapEntity = window.MapEntity;
+
+
 
 
     // Это енамчик различных элементов карты
@@ -24,7 +33,7 @@
 
     var entities = [];
 
-    class MapGenerator {
+export class MapGenerator {
         constructor(elementSetFiles) {
             this.elementSetFiles = elementSetFiles;
         }
@@ -73,6 +82,6 @@
 
 
 
-    window.MapGenerator = MapGenerator; // экспортируем класс
+//    window.MapGenerator = MapGenerator; // экспортируем класс
 
-})();
+// })();

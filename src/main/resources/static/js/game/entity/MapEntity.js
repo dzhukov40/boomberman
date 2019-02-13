@@ -3,12 +3,12 @@
  *
  * @module MapEntity
  */
-(function () {
+// (function () {
     "use strict";
 
-    const Entity = window.Entity;
+import Entity from './Entity.js';
 
-    class MapEntity extends Entity {
+export class MapEntity extends Entity {
         constructor(position, sprites) {
             super(position, sprites);
 
@@ -20,6 +20,6 @@
 
     }
 
-    window.MapEntity = MapEntity; // экспортируем класс
+//    window.MapEntity = MapEntity; // экспортируем класс
 
-})();
+//})();

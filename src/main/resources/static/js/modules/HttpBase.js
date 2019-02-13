@@ -2,7 +2,7 @@
  * позволяет сдделать Http запрос на любой url
  * @module HttpBase
  */
-(function () {
+// (function () {
     "use strict";
 
     //const xhr = new XMLHttpRequest();
@@ -25,7 +25,7 @@
     };
 
 
-    class HttpBase {
+export class HttpBase {
         constructor() {
         }
 
@@ -63,6 +63,6 @@
 
     }
 
-    window.HttpBase = HttpBase; // экспортируем класс
+//     window.HttpBase = HttpBase; // экспортируем класс
 
-})();
+// })();

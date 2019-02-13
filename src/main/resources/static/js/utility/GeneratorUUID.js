@@ -2,11 +2,11 @@
  *
  * @module GeneratorUUID
  */
-(function () {
+//(function () {
     "use strict";
 
 
-    class GeneratorUUID {
+export class GeneratorUUID {
         constructor() {}
 
         /**
@@ -25,6 +25,6 @@
 
     }
 
-    window.GeneratorUUID = GeneratorUUID; // экспортируем класс
+//    window.GeneratorUUID = GeneratorUUID; // экспортируем класс
 
-})();
+//})();

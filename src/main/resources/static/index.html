@@ -45,12 +45,12 @@
 <br>
 <br>
 <br>
-<button class="btn btn-default" onclick="sayHello()">sayHello()</button>
-<button class="btn btn-default" onclick="testGetRequest()">testGetRequest()</button>
-<button class="btn btn-default" onclick="testShowErrorMessage()">testShowErrorMessage</button>
-<button class="btn btn-default" onclick="testSendMessage()">testSendMessage</button>
-<button class="btn btn-default" onclick="GameCanvas_create()">GameCanvas_create</button>
-<button class="btn btn-default" onclick="GameCanvas_visible()">GameCanvas_visible</button>
+<button class="btn btn-default" id="sayHello">sayHello()</button>
+<button class="btn btn-default" id="testGetRequest">testGetRequest()</button>
+<button class="btn btn-default" id="testShowErrorMessage">testShowErrorMessage</button>
+<button class="btn btn-default" id="testSendMessage">testSendMessage</button>
+<button class="btn btn-default" id="GameCanvas_create">GameCanvas_create</button>
+<button class="btn btn-default" id="GameCanvas_visible">GameCanvas_visible</button>
 
 
 
@@ -65,9 +65,9 @@
 <div id="js">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-    <script src="js/utility/GeneratorUUID.js"></script>
+   <!-- <script src="js/utility/GeneratorUUID.js"></script>-->
 
-    <script src="js/blocks/Block.js"></script>
+<!--    <script src="js/blocks/Block.js"></script>
     <script src="js/blocks/form.js"></script>
 
     <script src="js/game/entity/Entity.js"></script>
@@ -88,10 +88,11 @@
     <script src="js/services/AuthorizationService.js"></script>
     <script src="js/services/WebSocketService.js"></script>
 
-    <script src="js/dto/PlayerEventDto.js"></script>
+    <script src="js/dto/PlayerEventDto.js"></script>-->
 
 
-    <script src="js/app.js"></script>
+
+    <script src="js/app.js" type="module"></script>
 </div>
 
 </body>

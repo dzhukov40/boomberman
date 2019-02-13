@@ -2,10 +2,10 @@
  *
  * @module InputKeyboardUserData
  */
-(function () {
+// (function () {
     "use strict";
 
-    var pressedKeys = {};
+    let pressedKeys = {};
 
     function setKey(event, status) {
         var code = event.keyCode;
@@ -51,7 +51,7 @@
     });
 
 
-    class InputKeyboardUserData {
+export class InputKeyboardUserData {
         constructor() {}
 
         /**
@@ -75,6 +75,6 @@
 
     }
 
-    window.InputKeyboardUserData = InputKeyboardUserData; // экспортируем класс
+//     window.InputKeyboardUserData = InputKeyboardUserData; // экспортируем класс
 
-})();
+// })();

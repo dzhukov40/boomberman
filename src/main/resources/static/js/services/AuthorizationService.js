@@ -1,7 +1,7 @@
 /**
  * Модуль для работы с юзером
  */
-(function () {
+// (function () {
     "use strict";
 
     var HttpLocal = window.HttpLocal;
@@ -37,7 +37,7 @@
 
 
 
-    class AuthorizationService {
+export class AuthorizationService {
         constructor() {
         }
 
@@ -63,6 +63,6 @@
 
     }
 
-    window.AuthorizationService = AuthorizationService; // экспортируем класс
+//    window.AuthorizationService = AuthorizationService; // экспортируем класс
 
-})();
+//})();

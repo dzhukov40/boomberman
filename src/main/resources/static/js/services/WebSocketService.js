@@ -2,7 +2,7 @@
  * Модуль
  * @module WebSocketService
  */
-(function () {
+//(function () {
     "use strict";
 
     // определяем куда с фронта слать запросы
@@ -11,7 +11,7 @@
     const urlBase = "ws://" + host + ":" + port;
 
 
-    class WebSocketService {
+export class WebSocketService {
         constructor(url) {
             this.url = url != null ? url : urlBase;
             this.socket = new WebSocket(this.url);
@@ -36,6 +36,6 @@
 
     }
 
-    window.WebSocketService = WebSocketService; // экспортируем класс
+//    window.WebSocketService = WebSocketService; // экспортируем класс
 
-})();
+//})();

@@ -29,21 +29,46 @@
 "use strict";
 
 //TODO: добавить webPack и переписать через import/export
-const GeneratorUUID = window.GeneratorUUID;
-const HttpLocal = window.HttpLocal;
-const ResourceLoader = window.ResourceLoader;
-const Sprite = window.Sprite;
-const LayerOfCanvas = window.LayerOfCanvas;
-const MapGenerator = window.MapGenerator;
-const InputKeyboardUserData = window.InputKeyboardUserData;
-const UserEntity = window.UserEntity;
-const MapEntity = window.MapEntity;
-const AuthorizationService = window.AuthorizationService;
-const WebSocketService = window.WebSocketService;
-const PlayerEventDto = window.PlayerEventDto;
-const PLAYER_EVENT = window.PLAYER_EVENT;
+// const GeneratorUUID = window.GeneratorUUID;
 
+import { GeneratorUUID } from './utility/GeneratorUUID.js';
 
+import { HttpLocal } from './modules/HttpLocal.js';
+// const HttpLocal = window.HttpLocal;
+
+import { ResourceLoader } from './components/ResourceLoader.js';
+// const ResourceLoader = window.ResourceLoader;
+
+import { Sprite } from './game/entity/Sprite.js';
+//const Sprite = window.Sprite;
+
+import { LayerOfCanvas } from './components/LayerOfCanvas.js';
+// const LayerOfCanvas = window.LayerOfCanvas;
+
+import { MapGenerator } from './components/MapGenerator.js';
+// const MapGenerator = window.MapGenerator;
+
+import { InputKeyboardUserData } from './components/InputKeyboardUserData.js';
+// const InputKeyboardUserData = window.InputKeyboardUserData;
+
+import { UserEntity } from './game/entity/UserEntity.js';
+// const UserEntity = window.UserEntity;
+
+import { MapEntity } from './game/entity/MapEntity.js';
+// const MapEntity = window.MapEntity;
+
+import { AuthorizationService } from './services/AuthorizationService.js';
+// const AuthorizationService = window.AuthorizationService;
+
+import { WebSocketService } from './services/WebSocketService.js';
+// const WebSocketService = window.WebSocketService;
+
+import { PlayerEventDto, PLAYER_EVENT } from './dto/PlayerEventDto.js';
+//const PlayerEventDto = window.PlayerEventDto;
+
+// const PLAYER_EVENT = window.PLAYER_EVENT;
+
+console.log(window.ChatService );
 
 // подключение к webSocket
 let webSocketConnectionUrl = "ws://localhost:3030";
@@ -60,12 +85,14 @@ function sayHello(){
         alert("sayHello()");
     }
 }
+document.getElementById("sayHello").addEventListener('click', sayHello);
 
 function testGetRequest(){
     let headers = new Map();
     headers.set('Content-Type','application/json; charset=utf8');
     HttpLocal.get('/echo', headers, sendToConsole);
 }
+document.getElementById("testGetRequest").addEventListener('click', testGetRequest);
 
 function testShowErrorMessage() {
     console.log("пук");
@@ -97,6 +124,7 @@ function testShowErrorMessage() {
     layersOfCanvas.push(generateGameMap);
     layersOfCanvas.push(layerOfCanvas);
 }
+document.getElementById("testShowErrorMessage").addEventListener('click', testShowErrorMessage);
 
 function testSendMessage(){
 /*    let headers = new Map();
@@ -105,6 +133,7 @@ function testSendMessage(){
 
     webSocketService.sendMessage(JSON.stringify ("приветики"));
 }
+document.getElementById("testSendMessage").addEventListener('click', testSendMessage);
 
 let canvasSize = [1500, 500];
 let layerOfCanvas = new LayerOfCanvas("mainLayer", canvasSize);

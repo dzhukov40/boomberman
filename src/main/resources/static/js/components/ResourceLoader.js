@@ -2,7 +2,7 @@
  *
  * @module ResourceLoader
  */
-(function () {
+// (function () {
     "use strict";
 
     var resourceCache = {};
@@ -28,7 +28,7 @@
     }
 
 
-    class ResourceLoader {
+export class ResourceLoader {
         constructor() {}
 
         static load(urlOrArrayOfUrls) {
@@ -64,6 +64,6 @@
     }
 
 
-    window.ResourceLoader = ResourceLoader; // экспортируем класс
+//     window.ResourceLoader = ResourceLoader; // экспортируем класс
 
-})();
+// })();
