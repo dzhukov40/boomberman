@@ -188,7 +188,7 @@ function main() {
             .set('right', rightSprite)
             .set('left', leftSprite)
     );
-    user.setUUID(userUUID);
+    user.uuid = userUUID;
 
 
     layerOfCanvas.addEntity(user);
@@ -209,7 +209,7 @@ function main() {
                     .set('right', rightSprite)
                     .set('left', leftSprite)
             );
-            user2.setUUID(messageObject._UUID);
+            user2.uuid = messageObject._UUID;
             user2.setShowSprite(messageObject._showSprite);
 
             layerOfCanvas.addEntity(user2);

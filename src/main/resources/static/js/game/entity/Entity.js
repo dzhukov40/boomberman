@@ -3,47 +3,46 @@
  *
  * @module Entity
  */
-// (function () {
-    "use strict";
+"use strict";
 
-  //  const GeneratorUUID = window.GeneratorUUID;
-import { GeneratorUUID } from '../../utility/GeneratorUUID.js';
+import {GeneratorUUID} from '../../utility/GeneratorUUID.js';
+
 
 export default class Entity {
-        constructor(position, sprites) {
-            this.position = position;
-            this.sprites = sprites;
-            this.showSprite = null;
+    constructor(position, sprites) {
+        this._showSprite = null;
 
-            this.uuid = GeneratorUUID.create_UUID();
-        }
-
-        setUUID(uuid) {
-            this.uuid = uuid;
-        }
-
-        getUUID() {
-            return this.uuid;
-        }
-
-        getSprites() {
-            return this.sprites;
-        }
-
-        getPosition() {
-            return this.position;
-        }
-
-        getShowSprite() {
-            return this.showSprite;
-        }
-
-        setShowSprite(showSprite) {
-            this.showSprite = this.sprites.get(showSprite);
-        }
-
+        this._uuid = GeneratorUUID.create_UUID();
+        this._position = position;
+        this._sprites = sprites;
     }
 
-//    window.Entity = Entity; // экспортируем класс
+    get uuid() {
+        return this._uuid;
+    }
 
-//})();
+    set uuid(value) {
+        this._uuid = value;
+    }
+
+    get position() {
+        return this._position;
+    }
+
+    set position(value) {
+        this._position = value;
+    }
+
+    get sprites() {
+        return this._sprites;
+    }
+
+    get showSprite() {
+        return this._showSprite;
+    }
+
+    setShowSprite(showSprite) {
+        this._showSprite = this._sprites.get(showSprite);
+    }
+
+}

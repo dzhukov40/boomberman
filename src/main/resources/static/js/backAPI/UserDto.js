@@ -2,9 +2,9 @@
  **/
 "use strict";
 
-const EnvelopeDto = require('./EnvelopeDto');
+import {EnvelopeDto} from './EnvelopeDto.js';
 
-class UserDto extends EnvelopeDto {
+export class UserDto extends EnvelopeDto {
     constructor(UUID) {
         super();
         this._UUID = UUID;
@@ -36,5 +36,3 @@ class UserDto extends EnvelopeDto {
         this._showSprite = value;
     }
 }
-
-module.exports = UserDto;

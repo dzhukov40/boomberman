@@ -1,29 +1,22 @@
 /**
  * Модуль для работы с юзером
  */
-// (function () {
-    "use strict";
+"use strict";
 
-    let HttpLocal = window.HttpLocal;
+import {HttpLocal} from '../modules/HttpLocal.js';
 
-    const CHAT_SERVICE_PATH = '/chat';
-    const SEND = CHAT_SERVICE_PATH + '/send';
+
+const CHAT_SERVICE_PATH = '/chat';
+const SEND = CHAT_SERVICE_PATH + '/send';
 
 
 export class ChatService {
-        constructor() {
-        }
-
-        send(userName, password, callback) {
-            var body = {userName, password};
-            HttpLocal.post(SEND, body, callback);
-        }
-
-
-
-
+    constructor() {
     }
 
-//   window.ChatService = ChatService; // экспортируем класс
+    send(userName, password, callback) {
+        let body = {userName, password};
+        HttpLocal.post(SEND, body, callback);
+    }
 
-// })();
+}

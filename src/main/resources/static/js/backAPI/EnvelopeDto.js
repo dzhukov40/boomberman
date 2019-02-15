@@ -2,8 +2,7 @@
  **/
 "use strict";
 
-
-class EnvelopeDto {
+export class EnvelopeDto {
     constructor(time) {
         this._time = time || Date.now();
     }
@@ -16,5 +15,3 @@ class EnvelopeDto {
         this._time = value;
     }
 }
-
-module.exports = EnvelopeDto;

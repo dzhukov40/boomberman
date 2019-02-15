@@ -16,14 +16,14 @@ const PLAYER_BUTTON = {
     UP: {code: 38, key: 'UP'},
     RIGHT: {code: 39, key: 'RIGHT'},
     DOWN: {code: 40, key: 'DOWN'},
-}
+};
 
 const PLAYER_SPRITE = {
     LEFT: 'left',
     RIGHT: 'right',
     FRONT: 'front',
     BACK: 'back',
-}
+};
 
 
 function setKey(code, status, pressedKeys) {
@@ -36,11 +36,12 @@ function setKey(code, status, pressedKeys) {
         }
     }
 
-    // нужны ли нам не отслеживаемые кнопки?
+    //TODO: нужны ли нам не отслеживаемые кнопки?
     if (key === undefined) {
         key = String.fromCharCode(code);
     }
 
+    //TODO: пользователь нажал две кнопки, потом одну отжал, похоже это багуля
     removeSenselessVersions(pressedKeys);
 
     pressedKeys[key] = status;
@@ -78,7 +79,7 @@ exports.setKeyFromClient =  function setKeyFromClient(msg, pressedKeys) {
                 delete pressedKeys[property];
             }
     }
-}
+};
 
 
 /**
@@ -126,7 +127,7 @@ exports.changeUserPosition = function changeUserPosition(user, isButtonPressed)
         return true
     }
 
-}
+};
 
 
 

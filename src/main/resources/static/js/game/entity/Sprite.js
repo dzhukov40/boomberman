@@ -11,88 +11,84 @@
  * once: true, если необходимо отобразить только один цикл анимации, false — (по-умолчанию)
  * @module Sprite
  */
-//(function () {
-    "use strict";
+"use strict";
+
 
 export class Sprite {
-        constructor(img, pos, size, speed, frames, dir, once) {
-            this.img = img;
-            this.pos = pos;
-            this.size = size;
-            this.speed = typeof speed === 'number' ? speed : 0;
-            this.frames = frames;
-            this.dir = dir || 'horizontal';
-            this.once = once;
+    constructor(img, pos, size, speed, frames, dir, once) {
+        this.img = img;
+        this.pos = pos;
+        this.size = size;
+        this.speed = typeof speed === 'number' ? speed : 0;
+        this.frames = frames;
+        this.dir = dir || 'horizontal';
+        this.once = once;
 
-            this.savedTime = 0;
-            this.imgSize = [size[0], size[1]]; // конечный размер показываемого изображения
-        }
-
-        /**
-         * обновляем внутреннее время, для расчета, какой кадр показывать
-         * @param time текущее время в милисекундах
-         */
-        update(time) {
-            let dt = time - this.savedTime;
-            if (dt  > this.speed) {
-                this.savedTime += dt;
-            }
-        }
-
-        /**
-         * рисуем спрайт
-         * @param ctx контекст конваса
-         */
-        render (ctx) {
-            let frame;
-
-            if(this.speed > 0) {
-                let max = this.frames.length;      // сколько картинок всего в анимации
-                let idx = Math.floor(this.savedTime); // Math.floor() возвращает наибольшее целое число, которое меньше или равно данному числу
-                frame = this.frames[idx % max];    // определяем какой кадр спрайта надо показать из имеющихся
-
-                // если надо было один цикл анимации показать
-                if(this.once && idx >= max) {
-                    this.done = true;
-                    return;
-                }
-            }
-            else {
-                frame = 0;
-            }
-
-            let x = this.pos[0]; // x и y координаты изображения на спрайт карте
-            let y = this.pos[1];
-
-            if(this.dir === 'vertical') {
-                y += frame * this.size[1];
-            }
-            else {
-                x += frame * this.size[0];
-            }
-
-            ctx.drawImage(this.img,
-                x, y,
-                this.size[0], this.size[1],
-                0, 0,
-                this.imgSize[0], this.imgSize[1]);
-        }
-
-        changeImgSize(coefficient) {
-            this.imgSize[0] = this.imgSize[0] * coefficient;
-            this.imgSize[1] = this.imgSize[1] * coefficient;
-        }
-
-        setImgSize(imgSize) {
-            this.imgSize = imgSize;
-        }
-
-        getImgSize() {
-            return this.imgSize;
-        }
-
+        this.savedTime = 0;
+        this._imgSize = [size[0], size[1]]; // конечный размер показываемого изображения
     }
 
-//     window.Sprite = Sprite; // экспортируем класс
+    /**
+     * обновляем внутреннее время, для расчета, какой кадр показывать
+     * @param time текущее время в милисекундах
+     */
+    update(time) {
+        let dt = time - this.savedTime;
+        if (dt > this.speed) {
+            this.savedTime += dt;
+        }
+    }
 
-// })();
+    /**
+     * рисуем спрайт
+     * @param ctx контекст конваса
+     */
+    render(ctx) {
+        let frame;
+
+        if (this.speed > 0) {
+            let max = this.frames.length;      // сколько картинок всего в анимации
+            let idx = Math.floor(this.savedTime); // Math.floor() возвращает наибольшее целое число, которое меньше или равно данному числу
+            frame = this.frames[idx % max];    // определяем какой кадр спрайта надо показать из имеющихся
+
+            // если надо было один цикл анимации показать
+            if (this.once && idx >= max) {
+                this.done = true;
+                return;
+            }
+        }
+        else {
+            frame = 0;
+        }
+
+        let x = this.pos[0]; // x и y координаты изображения на спрайт карте
+        let y = this.pos[1];
+
+        if (this.dir === 'vertical') {
+            y += frame * this.size[1];
+        }
+        else {
+            x += frame * this.size[0];
+        }
+
+        ctx.drawImage(this.img,
+            x, y,
+            this.size[0], this.size[1],
+            0, 0,
+            this._imgSize[0], this._imgSize[1]);
+    }
+
+    changeImgSize(coefficient) {
+        this._imgSize[0] = this._imgSize[0] * coefficient;
+        this._imgSize[1] = this._imgSize[1] * coefficient;
+    }
+
+    get imgSize() {
+        return this._imgSize;
+    }
+
+    set imgSize(value) {
+        this._imgSize = value;
+    }
+
+}
