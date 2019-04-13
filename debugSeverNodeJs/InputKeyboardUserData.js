@@ -41,24 +41,8 @@ function setKey(code, status, pressedKeys) {
         key = String.fromCharCode(code);
     }
 
-    //TODO: пользователь нажал две кнопки, потом одну отжал, похоже это багуля
-    removeSenselessVersions(pressedKeys);
 
     pressedKeys[key] = status;
-}
-
-function removeSenselessVersions(pressedKeys) {
-
-    if(pressedKeys[PLAYER_BUTTON.RIGHT.key] === true && pressedKeys[PLAYER_BUTTON.LEFT.key]) {
-        pressedKeys[PLAYER_BUTTON.RIGHT.key] = false;
-        pressedKeys[PLAYER_BUTTON.LEFT.key] = false;
-    }
-
-    if(pressedKeys[PLAYER_BUTTON.UP.key] === true && pressedKeys[PLAYER_BUTTON.DOWN.key]) {
-        pressedKeys[PLAYER_BUTTON.UP.key] = false;
-        pressedKeys[PLAYER_BUTTON.DOWN.key] = false;
-    }
-
 }
 
 /**
